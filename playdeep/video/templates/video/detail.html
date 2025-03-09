@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block title %}{{ video.caption }}{% endblock %}
+
+{% block content %}
+  <h1>{{ video.caption }}</h1>
+  <p class="date">
+    Published {{ video.publish }}
+  </p>
+  <div class="video-container">
+    <video width="70%" controls>
+        <source src="{{ video.video.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  </div>
+{% endblock %}
