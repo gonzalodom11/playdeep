@@ -1,0 +1,1270 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-03-01T18:47:13.848Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Inauguración de play deep",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-03-01T18:48:58.179Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Inauguración de Play Deep",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-03-01T19:27:05.168Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Inauguración de Play Deep",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-03-05T19:54:21.051Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-03-05T19:55:12.746Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-03-05T19:56:23.538Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-03-05T19:57:02.738Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-03-05T19:57:35.120Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Ruiz de Galarreta: \"Ranieri y la Roma nos van a obligar a hacer dos partidos casi perfectos\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-03-05T19:58:53.392Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-03-05T19:59:34.104Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-03-05T21:14:55.219Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Betis",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-03-05T21:15:05.921Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Real Madrid",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-03-05T21:15:18.221Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "La Liga",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-03-05T21:17:14.535Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-03-05T21:17:56.645Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-03-05T21:18:23.490Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-03-05T21:19:27.809Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-03-05T21:28:11.115Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "Atletico de Madrid",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-03-05T21:28:39.386Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "Atlético de Madrid",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-03-05T21:34:51.092Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-03-05T21:35:37.746Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-03-05T21:36:11.669Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-03-05T21:37:30.433Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Inauguración de Play Deep",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-03-05T21:38:10.145Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-03-05T21:38:32.046Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-03-05T21:39:11.487Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-03-05T21:40:02.627Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-03-05T21:41:26.851Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Ruiz de Galarreta: \"Ranieri y la Roma nos van a obligar a hacer dos partidos casi perfectos\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-03-05T21:41:50.744Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-03-07T09:50:44.696Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "localhost:8000",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add post",
+    "content_type": 7,
+    "codename": "add_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change post",
+    "content_type": 7,
+    "codename": "change_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete post",
+    "content_type": 7,
+    "codename": "delete_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view post",
+    "content_type": 7,
+    "codename": "view_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add comment",
+    "content_type": 8,
+    "codename": "add_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change comment",
+    "content_type": 8,
+    "codename": "change_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete comment",
+    "content_type": 8,
+    "codename": "delete_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view comment",
+    "content_type": 8,
+    "codename": "view_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add tag",
+    "content_type": 9,
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change tag",
+    "content_type": 9,
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete tag",
+    "content_type": 9,
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view tag",
+    "content_type": 9,
+    "codename": "view_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add tagged item",
+    "content_type": 10,
+    "codename": "add_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change tagged item",
+    "content_type": 10,
+    "codename": "change_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete tagged item",
+    "content_type": 10,
+    "codename": "delete_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view tagged item",
+    "content_type": 10,
+    "codename": "view_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 11,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 11,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 11,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 11,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$TZzqAtibndnqgY2wFsRXmc$JVXfbnbBJE4bJvacUBnsssSLFafAHOAZRdrcYZpbbQc=",
+    "last_login": "2025-03-07T09:49:29.372Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "7gonzalodm@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-03-01T18:40:00.214Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "g8k79f3oq2dmnkph7eoguhz6dhy5efxw",
+  "fields": {
+    "session_data": ".eJxVjLEOwjAMRP8lM4qctsSBkb3fENl1TAqolZp2Qvw7qdQBlhvuvbu3ibStOW4lLXEUczXOnH47puGZph3Ig6b7bId5WpeR7a7Ygxbbz5Jet8P9O8hUcl2TawSckGdMGloCrsltCDCARwRSkqYiRAedqjCpdujapAJ89hfz-QL8FTi2:1tpulR:8FouglL68wF3tJGBqKmwHFkjUJZWiyjuveMN7vlm6Y4",
+    "expire_date": "2025-03-19T19:50:45.221Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hyaxsk82c05fn79die4xcwb1dvu43bwp",
+  "fields": {
+    "session_data": ".eJxVjLEOwjAMRP8lM4qctsSBkb3fENl1TAqolZp2Qvw7qdQBlhvuvbu3ibStOW4lLXEUczXOnH47puGZph3Ig6b7bId5WpeR7a7Ygxbbz5Jet8P9O8hUcl2TawSckGdMGloCrsltCDCARwRSkqYiRAedqjCpdujapAJ89hfz-QL8FTi2:1toRlY:HL99oRutQU36tD3fJYhch88MMJFuqFx5DOA9C4Ve9-U",
+    "expire_date": "2025-03-15T18:40:48.463Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sxn4hne7znftdv0bqidts87j7n7yd39l",
+  "fields": {
+    "session_data": ".eJxVjLEOwjAMRP8lM4qctsSBkb3fENl1TAqolZp2Qvw7qdQBlhvuvbu3ibStOW4lLXEUczXOnH47puGZph3Ig6b7bId5WpeR7a7Ygxbbz5Jet8P9O8hUcl2TawSckGdMGloCrsltCDCARwRSkqYiRAedqjCpdujapAJ89hfz-QL8FTi2:1tqUKf:SHmzZJuytYt-bM-Pm0gHxPX4jZ4FZY8hithrT2Bg3Io",
+    "expire_date": "2025-03-21T09:49:29.381Z"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "localhost:8000",
+    "name": "localhost:8000"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Betis",
+    "slug": "betis"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Real Madrid",
+    "slug": "real-madrid"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 3,
+  "fields": {
+    "name": "La Liga",
+    "slug": "la-liga"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Real",
+    "slug": "real"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Madrid",
+    "slug": "madrid"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 6,
+  "fields": {
+    "name": "Atlético de Madrid",
+    "slug": "atletico-de-madrid"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 7,
+  "fields": {
+    "name": "Champions Lague",
+    "slug": "champions-lague"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 8,
+  "fields": {
+    "name": "F.C",
+    "slug": "fc"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 9,
+  "fields": {
+    "name": "Valencia",
+    "slug": "valencia"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 10,
+  "fields": {
+    "name": "ValenciaFC",
+    "slug": "valenciafc"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 11,
+  "fields": {
+    "name": "PlayDeep",
+    "slug": "playdeep"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 12,
+  "fields": {
+    "name": "Champions League",
+    "slug": "champions-league"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 13,
+  "fields": {
+    "name": "Pellegrini",
+    "slug": "pellegrini"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 14,
+  "fields": {
+    "name": "Isco",
+    "slug": "isco"
+  }
+},
+{
+  "model": "taggit.tag",
+  "pk": 15,
+  "fields": {
+    "name": "ASRoma",
+    "slug": "asroma"
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 3,
+  "fields": {
+    "tag": 2,
+    "content_type": 7,
+    "object_id": 4
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 4,
+  "fields": {
+    "tag": 6,
+    "content_type": 7,
+    "object_id": 4
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 8,
+  "fields": {
+    "tag": 10,
+    "content_type": 7,
+    "object_id": 5
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 9,
+  "fields": {
+    "tag": 2,
+    "content_type": 7,
+    "object_id": 3
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 10,
+  "fields": {
+    "tag": 11,
+    "content_type": 7,
+    "object_id": 1
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 11,
+  "fields": {
+    "tag": 12,
+    "content_type": 7,
+    "object_id": 3
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 12,
+  "fields": {
+    "tag": 3,
+    "content_type": 7,
+    "object_id": 5
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 13,
+  "fields": {
+    "tag": 1,
+    "content_type": 7,
+    "object_id": 6
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 14,
+  "fields": {
+    "tag": 13,
+    "content_type": 7,
+    "object_id": 6
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 15,
+  "fields": {
+    "tag": 14,
+    "content_type": 7,
+    "object_id": 6
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 16,
+  "fields": {
+    "tag": 12,
+    "content_type": 7,
+    "object_id": 4
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 17,
+  "fields": {
+    "tag": 15,
+    "content_type": 7,
+    "object_id": 7
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 18,
+  "fields": {
+    "tag": 1,
+    "content_type": 7,
+    "object_id": 8
+  }
+},
+{
+  "model": "taggit.taggeditem",
+  "pk": 19,
+  "fields": {
+    "tag": 14,
+    "content_type": 7,
+    "object_id": 8
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "title": "Inauguración de Play Deep",
+    "slug": "inauguracion-playdeep",
+    "body": "Bienvenidos a Play Deep, el nuevo rincón para los verdaderos amantes del fútbol! 🌍⚽️\r\n\r\nAquí encontrarás análisis, noticias, curiosidades y opiniones sobre el deporte rey, con una mirada fresca y profunda. Desde las mejores jugadas hasta las tácticas más innovadoras, queremos compartir nuestra pasión por el fútbol contigo.\r\n\r\n¡Arrancamos esta aventura y te invitamos a ser parte de ella! 🔥⚽️\r\n\r\n#PlayDeep #Fútbol #PasiónPorElFútbol",
+    "publish": "2025-03-01T18:43:22Z",
+    "created": "2025-03-01T18:47:13.844Z",
+    "updated": "2025-03-05T21:37:30.427Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "title": "New title",
+    "slug": "another-post",
+    "body": "Post body.",
+    "publish": "2025-03-01T18:56:04.090Z",
+    "created": "2025-03-01T18:56:10.261Z",
+    "updated": "2025-03-01T18:57:02.690Z",
+    "status": "DF",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 3,
+  "fields": {
+    "title": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "slug": "recuperar-al-mbappe-del-city-la-obsesion-del-real-madrid",
+    "body": "El Real Madrid llegaba al primero de los partidos ante el Atlético de Madrid tocado, con numerosas bajas y por lo visto sobre césped del Bernabéu, con una ausencia inesperada. Tanto es así que la inmediata misión del cuerpo técnico madridista no es otra que recuperar a Kylian Mbappé para lo que queda de temporada.  Ha desconectado en las últimas semanas, justo cuando más le necesitaba su equipo.",
+    "publish": "2025-03-05T19:50:50Z",
+    "created": "2025-03-05T19:54:21.048Z",
+    "updated": "2025-03-05T21:38:10.139Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 4,
+  "fields": {
+    "title": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
+    "slug": "al-atletico-le-falto-colmillo-en-el-bernabeu",
+    "body": "Al Atlético de Madrid le faltó colmillo, le faltó hambre para sacar un mejor resultado del Santiago Bernabéu. \r\nLa sensación es que el Real Madrid gana más en lo psicológico que en lo numérico, porque el Atlético, durante una gran fase del partido, fue mejor y dominó al conjunto de Carlo Ancelotti.",
+    "publish": "2025-03-05T19:54:21Z",
+    "created": "2025-03-05T19:55:12.744Z",
+    "updated": "2025-03-05T21:40:02.621Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 5,
+  "fields": {
+    "title": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "slug": "kiat-lim-visito-el-nuevo-mestalla-en-su-visita-relampago-un-proyecto-clave-en-la-generacion-de-nuevas-vias-de-ingreso",
+    "body": "Kiat Lim, nuevo presidente del Valencia, tuvo su protocolario paso por las obras del Nuevo Mestalla, en las horas que pasó por la capital del Turia para ser elegido máximo responsable ejecutivo del club. No advirtió mucho cambio con respecto al aspecto que tenía el esqueleto del futuro coliseo blanquinegro cuando lo pisó la primera vez en diciembre de 2022. Entonces no había obreros trabajando, pero en los dos meses que han pasado desde la reanudación de las obras tampoco ha habido tiempo para mucho.",
+    "publish": "2025-03-05T19:55:12Z",
+    "created": "2025-03-05T19:56:23.535Z",
+    "updated": "2025-03-05T21:38:32.045Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 6,
+  "fields": {
+    "title": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
+    "slug": "pellegrini-isco-esta-en-un-buen-momento-futbolistico-y-de-madurez-ojala-vuelva-a-la-seleccion",
+    "body": "Entrenamiento.  Sin Lo Celso, Roca y Ortiz en la última sesión antes de recibir al Vitória\r\nManuel Pellegrini, técnico del Betis, ha comparecido este mediodía en la sala de prensa del estadio Benito Villamarín, acompañado por Cédric Bakambu, para analizar cómo afronta su equipo el partido de ida de los octavos de final de la Conference League que disputará mañana frente al Vitória Guimaraes.",
+    "publish": "2025-03-05T19:56:23Z",
+    "created": "2025-03-05T19:57:02.735Z",
+    "updated": "2025-03-05T21:39:11.480Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 7,
+  "fields": {
+    "title": "Ruiz de Galarreta: \"Ranieri y la Roma nos van a obligar a hacer dos partidos casi perfectos\"",
+    "slug": "ruiz-de-galarreta-ranieri-y-la-roma-nos-van-a-obligar-a-hacer-dos-partidos-casi-perfectos",
+    "body": "Iñigo Ruiz de Galarreta (31 años) cumple su segunda campaña en el regreso al Athletic tras hacer carrera en varios equipos hasta cumplir lo que considera un sueño. El centrocampista rojiblanco, que tiene todo cerrado para renovar el contrato que expira en junio, analiza en una charla con MARCA el momento del Athletic, la ilusión de equipo y afición por la Europa League y las dificultades que entrañará el doble compromiso con la Roma.",
+    "publish": "2025-03-05T19:57:02Z",
+    "created": "2025-03-05T19:57:35.119Z",
+    "updated": "2025-03-05T21:41:26.843Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 8,
+  "fields": {
+    "title": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
+    "slug": "el-mundo-del-futbol-se-rinde-ante-isco-es-el-mejor-companero-que-he-visto-en-toda-mi-carrera",
+    "body": "El Betis conseguía ganar ante el Real Madrid en una auténtica exhibición de Isco Alarcón. Se hizo con el control del partido, repartió todo tipo de pases e incluso marcó el gol de la victoria. No ha sido un partido puntual; desde que volvió de su grave lesión ha cambiado totalmente la cara a su equipo. Un cúmulo de cosas que han hecho que muchos compañeros suyos elogien al malagueño. Aunque uno de los primeros que se deshizo ante su calidad fue su amigo Marcelo.",
+    "publish": "2025-03-05T19:58:28Z",
+    "created": "2025-03-05T19:58:53.390Z",
+    "updated": "2025-03-05T21:41:50.738Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 1,
+  "fields": {
+    "post": 8,
+    "name": "Gonzalo",
+    "email": "7gonzalodm@gmail.com",
+    "body": "El gran juego del Betis, hizo un partido muy solido, tanto en ataque como en defensa",
+    "created": "2025-03-05T20:43:07.548Z",
+    "updated": "2025-03-05T20:43:07.548Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 2,
+  "fields": {
+    "post": 8,
+    "name": "Giovanni",
+    "email": "giovannidomenico@gmail.com",
+    "body": "La carrera de Isco está muy infravalorada",
+    "created": "2025-03-05T20:44:29.463Z",
+    "updated": "2025-03-05T20:44:29.463Z",
+    "active": true
+  }
+}
+]
