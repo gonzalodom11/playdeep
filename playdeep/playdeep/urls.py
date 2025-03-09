@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from blog.sitemaps import PostSitemap
+from django.conf import settings
+from django.conf.urls.static import static
 
 sitemaps = {
     'posts': PostSitemap,
@@ -31,5 +33,10 @@ urlpatterns = [
         sitemap,
         {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'
-    )
+    ),
+    path('', include('video.urls'))
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
