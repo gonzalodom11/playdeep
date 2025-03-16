@@ -1,3 +1,4 @@
+{% extends "base.html" %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
 <body>
 
     <div class="container">
-        <h1 class="header">🎥 PlayDeep Video Analysis</h1>
+        <h1 class="header">🎥 PlayDeep</h1>
         <hr>
         {% block content %}
         {% for x in videos %}
@@ -71,6 +72,7 @@
             </div>
         </div>
         {% endfor %}
+        {% include "pagination.html" with page=videos %}
         {% endblock %}
 
         <!-- Upload Section -->
