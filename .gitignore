@@ -54,3 +54,8 @@ coverage/
 
 # Optional stylelint cache
 .stylelintcache
+
+# No es recomendable subir archivos binarios pesados como los .dll o .pyd al repositorio de GitHub.
+*.dll
+*.pyd
+*.gz
