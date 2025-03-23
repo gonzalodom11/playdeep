@@ -13,7 +13,7 @@ class Video(models.Model):
         unique_for_date='publish'
     )
     def __str__(self):
-        return super().__str__()    
+        return self.caption
     
     class Meta:
         ordering = ['-publish']

@@ -79,13 +79,17 @@ def object_detection(request, year, month, day, video):
         publish__month=month,
         publish__day=day
         )
-
-    ROBOFLOW_API_KEY = config('ROBOFLOW_API_KEY')
-    PLAYER_DETECTION_MODEL_ID = "football-players-detection-3zvbc/11"
-    PLAYER_DETECTION_MODEL = get_model(model_id=PLAYER_DETECTION_MODEL_ID, api_key=ROBOFLOW_API_KEY)
     
+    try:
+        ROBOFLOW_API_KEY = config('ROBOFLOW_API_KEY')
+        PLAYER_DETECTION_MODEL_ID = "football-players-detection-3zvbc/11"
+        PLAYER_DETECTION_MODEL = get_model(model_id=PLAYER_DETECTION_MODEL_ID, api_key=ROBOFLOW_API_KEY)
+    except Exception as e:
+        return HttpResponse(f"Error: Environment key missing", status=500)
+    
+
     video_url = video.video.url
-    # video_url = r"C:\Users\User\Desktop\TFG-local\football-web\playdeep\media\videos\25\Koln.mp4"
+    
 
     box_annotator = sv.BoxAnnotator(
     color=sv.ColorPalette.from_hex(['#FF8C00', '#00BFFF', '#FF1493', '#FFD700']),

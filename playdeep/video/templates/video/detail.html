@@ -14,10 +14,9 @@
     </video>
   </div>
 
-  <form action="{% url 'object_detection' year=video.publish.year month=video.publish.month day=video.publish.day video=video.slug %}" method="get">
+  <form action="" method="get">
     <button type="submit">Analyze Video</button>
   </form>
-
   {% if image_result %}
     <h2>Analysis Result:</h2>
     <img src="{{ image_result }}" alt="Analyzed Frame">
