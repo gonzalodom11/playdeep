@@ -183,6 +183,6 @@ def object_detection_plot():
 
     sv.plot_image(annotated_frame)
 
-object_detection_plot()
+
 
 
