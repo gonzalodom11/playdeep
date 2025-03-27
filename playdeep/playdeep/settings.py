@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'taggit',
     'blog.apps.BlogConfig',
-    'video'
+    'video',
+    'ninja_extra',
+    'ninja_jwt',
     
 ]
 
