@@ -10,6 +10,7 @@ api.register_controllers(NinjaJWTDefaultController)
 class UserSchema(Schema):
     username: str
     is_authenticated: bool
+    email: str = None
 
 @api.get("/hello")
 def hello(request):
