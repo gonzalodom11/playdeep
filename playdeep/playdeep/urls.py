@@ -20,6 +20,7 @@ from django.urls import include, path
 from blog.sitemaps import PostSitemap
 from django.conf import settings
 from django.conf.urls.static import static
+from .api import api
 
 sitemaps = {
     'posts': PostSitemap,
@@ -34,7 +35,8 @@ urlpatterns = [
         {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'
     ),
-    path('', include('video.urls'))
+    path('', include('video.urls')),
+    path('api/', api.urls),
 
 ]
 

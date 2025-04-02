@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import datetime as datatime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,10 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    #third party apps
     'taggit',
+    'ninja_extra',
+    'ninja_jwt',
+    # internal apps
     'blog.apps.BlogConfig',
-    'video'
-    
+    'video',
+        
 ]
 
 MIDDLEWARE = [
@@ -140,3 +145,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+NINJA_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datatime.timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': datatime.timedelta(days=3),
+}
