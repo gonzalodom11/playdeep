@@ -15,3 +15,4 @@ class VideoSchema(Schema):
 class VideoCreateSchema(Schema):
     video: str  # This will store the file URL as a string
     caption: str
+
