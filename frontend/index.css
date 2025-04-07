@@ -1,109 +1,92 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate"
 
-@theme {
-  --font-display: "Satoshi", "sans-serif";
-  --breakpoint-3xl: 1920px;
-  --color-avocado-100: oklch(0.99 0 0);
-  --color-avocado-200: oklch(0.98 0.04 113.22);
-  --color-avocado-300: oklch(0.94 0.11 115.03);
-  --color-avocado-400: oklch(0.92 0.19 114.08);
-  --color-avocado-500: oklch(0.84 0.18 117.33);
-  --color-avocado-600: oklch(0.53 0.12 118.34);
-  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
-  --color-football-accent: #38E54D;
-  --color-football-dark: #0A2647;
-  --container-*: initial;
-  --container-center: true;
-  --container-padding: 2rem;
-  --container-breakpoints-2xl: 1400px;
-  
-  /* ... */
+
+@layer theme {
+  :root {
+    --border: 0 0% 90%;
+    --input: 0 0% 93%;
+    --ring: 220 14% 60%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --primary: 240 100% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 82% 52%;
+    --secondary-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 215 20% 25%;
+    --accent: 48 89% 60%;
+    --accent-foreground: 0 0% 0%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --radius: 0.5rem;
+  }
 }
 
+@layer utilities {
+  .bg-football-dark {
+    background-color: #0A2647;
+  }
+  .bg-football-medium {
+    background-color: #144272;
+  }
+  .bg-football-light {
+    background-color: #205295;
+  }
+  .bg-football-accent {
+    background-color: #38E54D;
+  }
 
-@layer base {
-    :root {
-      --background: 210 100% 98%;
-      --foreground: 215 25% 27%;
-  
-      --card: 0 0% 100%;
-      --card-foreground: 215 25% 27%;
-  
-      --popover: 0 0% 100%;
-      --popover-foreground: 215 25% 27%;
-  
-      --primary: 215 70% 17%;
-      --primary-foreground: 210 40% 98%;
-  
-      --secondary: 140 80% 55%;
-      --secondary-foreground: 215 25% 27%;
-  
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-  
-      --accent: 140 80% 55%;
-      --accent-foreground: 215 25% 27%;
-  
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
-  
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 215 70% 17%;
-  
-      --radius: 0.5rem;
+  .text-football-dark {
+    color: #0A2647;
+  }
+  .text-football-medium {
+    color: #144272;
+  }
+  .text-football-light {
+    color: #205295;
+  }
+  .text-football-accent {
+    color: #38E54D;
+  }
+
+  .rounded-lg {
+    border-radius: var(--radius);
+  }
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
+  .rounded-sm {
+    border-radius: calc(var(--radius) - 4px);
+  }
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
     }
-  
-    .dark {
-      --background: 215 70% 17%;
-      --foreground: 210 40% 98%;
-  
-      --card: 215 70% 17%;
-      --card-foreground: 210 40% 98%;
-  
-      --popover: 215 70% 17%;
-      --popover-foreground: 210 40% 98%;
-  
-      --primary: 210 40% 98%;
-      --primary-foreground: 215 70% 17%;
-  
-      --secondary: 140 80% 55%;
-      --secondary-foreground: 215 70% 17%;
-  
-      --muted: 215 41% 25%;
-      --muted-foreground: 215 20% 65%;
-  
-      --accent: 140 80% 55%;
-      --accent-foreground: 215 70% 17%;
-  
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
-  
-      --border: 215 41% 25%;
-      --input: 215 41% 25%;
-      --ring: 212.7 26.8% 83.9%;
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
     }
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {  
-      @apply bg-background text-foreground;
-    }
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
   }
-  
-  .hero-gradient {
-    background: linear-gradient(to right, rgba(10,38,71,0.95), rgba(32,82,149,0.95));
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
   }
-  
-  .feature-card {
-    @apply bg-white dark:bg-football-medium rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-football-dark;
-  }
-  
-  .video-card {
-    @apply bg-gradient-to-br from-football-dark to-football-medium rounded-xl overflow-hidden shadow-xl;
-  }
+}
