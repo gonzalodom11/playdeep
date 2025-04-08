@@ -1,6 +1,19 @@
 @import "tailwindcss";
-@plugin "tailwindcss-animate"
+@plugin "tailwindcss-animate";
 
+@layer components {
+  .feature-card {
+    background-color: #144272;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 1s ease-in-out;
+    border: 1px solid #0A2647;
+    }
+  .feature-card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+}
 
 @layer theme {
   :root {
@@ -89,4 +102,6 @@
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
+  
 }
+
