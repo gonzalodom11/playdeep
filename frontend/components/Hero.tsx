@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Vive el fútbol como nunca antes          
+            PlayDeep          
           </h1>
           <p className="text-xl text-gray-200 mb-8">
           Machine Learning para detectar, analizar y visualizar cada jugada en todo detalle. 
