@@ -7,7 +7,7 @@ import Features from '@/components/home/Features';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col navbar-dark">
       <Navbar />   
     <main className="flex-grow mt-16">
       <Hero />
