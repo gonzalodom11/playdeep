@@ -14,6 +14,7 @@ yarn-error.log*
 node_modules/
 jspm_packages/
 venv/
+.venv/
 
 # Optional npm cache directory
 .npm
@@ -60,3 +61,6 @@ coverage/
 *.dll
 *.pyd
 *.gz
+
+# Videos
+videos/

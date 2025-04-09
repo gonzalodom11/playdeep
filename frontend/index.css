@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@layer components {
+  .feature-card {
+    background-color: #144272;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 1s ease-in-out;
+    border: 1px solid #0A2647;
+    }
+  .feature-card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .navbar-dark {
+    background-color: #0a0a0a;
+    color: #ededed;
+  }
+}
+
+@layer theme {
+  :root {
+    --border: 0 0% 90%;
+    --input: 0 0% 93%;
+    --ring: 220 14% 60%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --primary: 240 100% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 82% 52%;
+    --secondary-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 215 20% 25%;
+    --accent: 48 89% 60%;
+    --accent-foreground: 0 0% 0%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer utilities {
+  .bg-football-darkest{
+    background-color: #0a0a0a;
+  }
+  .bg-football-dark {
+    background-color: #0A2647;
+  }
+  .bg-football-medium {
+    background-color: #144272;
+  }
+  .bg-football-light {
+    background-color: #205295;
+  }
+  .bg-football-accent {
+    background-color: #38E54D;
+  }
+
+  .text-football-dark {
+    color: #0A2647;
+  }
+  .text-football-medium {
+    color: #144272;
+  }
+  .text-football-light {
+    color: #205295;
+  }
+  .text-football-accent {
+    color: #38E54D;
+  }
+
+  .rounded-lg {
+    border-radius: var(--radius);
+  }
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
+  .rounded-sm {
+    border-radius: calc(var(--radius) - 4px);
+  }
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
+  
+}
+
