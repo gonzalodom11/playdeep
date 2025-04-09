@@ -22,7 +22,7 @@ class VideoSchema(Schema):
 
 
 class VideoCreateSchema(Schema):
-    video: str  # Accepts file uploads instead of just a string
+    video: UploadedFile
     caption: str
 
     class Config:
@@ -30,6 +30,4 @@ class VideoCreateSchema(Schema):
 
 
     def validate(self):
-        # This should happen outside of the schema validation, likely in your views or API endpoint
-        if isinstance(self.video, UploadedFile):
-            validate_video_file(self.video)
+        validate_video_file(self.video)
