@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
             PlayDeep          
           </h1>
           <p className="text-xl text-gray-200 mb-8">
-          Machine Learning para detectar, analizar y visualizar cada jugada en todo detalle. 
+          Deep Learning para detectar, analizar y visualizar cada jugada en todo detalle. 
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
