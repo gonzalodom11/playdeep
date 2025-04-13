@@ -17,6 +17,25 @@
     background-color: #0a0a0a;
     color: #ededed;
   }
+  .overflow-style {
+    background-color: rgba(20, 66, 114, 0.5); /* bg-football-medium/50 */
+    border: 1px solid #0A2647; /* border-football-dark */
+    transition: all 0.3s ease-in-out;
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* example shadow */
+    backdrop-filter: blur(10px); /* backdrop-blur-md */
+    height:min-content; /* h-full */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+  }
+  .overflow-style:hover {
+    background-color: #144272; /* bg-football-medium */
+    border-color: #38E54D;     /* hover:border-football-accent */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* example hover shadow */
+  }
 }
 
 @layer theme {
