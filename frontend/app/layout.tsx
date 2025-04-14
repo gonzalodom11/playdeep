@@ -32,7 +32,7 @@ export default function RootLayout({
         <ClientQueryProvider>
         <div className="min-h-screen flex flex-col navbar-dark">
           <Navbar />
-            <main className="flex-grow mt-16">{children}</main>
+            <main className="flex-grow mt-16 bg-football-dark">{children}</main>
           <Footer />
         </div>
         </ClientQueryProvider>
@@ -41,3 +41,4 @@ export default function RootLayout({
     </html>
   );
 }
+  
