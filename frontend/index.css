@@ -19,18 +19,18 @@
   }
   .overflow-style {
     background-color: rgba(20, 66, 114, 0.5); /* bg-football-medium/50 */
-    border: 1px solid #0A2647; /* border-football-dark */
+    border: 1px solid #0A2647;
     transition: all 0.3s ease-in-out;
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* example shadow */
-    backdrop-filter: blur(10px); /* backdrop-blur-md */
-    height: 423.33px; /* h-full */
-    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    height: 400px;
+    max-width: 480px; 
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    overflow: hidden;
+    display: flex; /* align child elements*/
+    flex-direction: column; /* stack child elements vertically */
+    
   }
   .overflow-style:hover {
     background-color: #144272; /* bg-football-medium */
