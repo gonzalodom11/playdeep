@@ -1,8 +1,27 @@
+"use client"
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Play } from 'lucide-react';
+import Link from 'next/link';
+
 
 const Hero: React.FC = () => {
+
+  async function getDjangoAPIData(){
+    const res = await fetch('http://127.0.0.1:8000/api/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  }
+
+  async function handleClick() {
+    await getDjangoAPIData();
+  }
+
   return (
     <div className="relative min-h-[80vh] flex items-center">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1893&auto=format&fit=crop&ixlib=rb-4.0.3')] bg-cover bg-center">
@@ -19,11 +38,11 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
-              Prueba gratis
+              <Link href={"/videos"}>Ver Videos</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
+            <Button onClick={handleClick} size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
               <Play size={16} className="mr-2" />
-              Ver Demo
+              Datos de Videos
             </Button>
           </div>
         </div>
