@@ -9,6 +9,11 @@ router = Router()
 @router.get("", response= List[VideoSchema])
 def list_videos(request):
     videos = Video.objects.all()
+    full_host = request.build_absolute_uri('/')[:-1]  # removes trailing slash
+
+    for v in videos:
+        v.video_url = f"{full_host}{v.video.url}"
+        print(v.video_url)  # Debugging line to check the video URL
     return videos
 
 
