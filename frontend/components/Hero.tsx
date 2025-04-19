@@ -7,24 +7,10 @@ import Link from 'next/link';
 
 const Hero: React.FC = () => {
 
-  async function getDjangoAPIData(){
-    const res = await fetch('http://127.0.0.1:8000/api/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-  }
-
-  async function handleClick() {
-    await getDjangoAPIData();
-  }
 
   return (
     <div className="relative min-h-[80vh] flex items-center">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1893&auto=format&fit=crop&ixlib=rb-4.0.3')] bg-cover bg-center">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1434648957308-5e6a859697e8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center">
         <div className="absolute inset-0 hero-gradient"></div>
       </div>
       
@@ -40,7 +26,7 @@ const Hero: React.FC = () => {
             <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
               <Link href={"/videos"}>Ver Videos</Link>
             </Button>
-            <Button onClick={handleClick} size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
+            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
               <Play size={16} className="mr-2" />
               Datos de Videos
             </Button>
