@@ -13,7 +13,6 @@ def list_videos(request):
 
     for v in videos:
         v.video_url = f"{full_host}{v.video.url}"
-        print(v.video_url)  # Debugging line to check the video URL
     return videos
 
 
