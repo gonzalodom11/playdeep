@@ -16,6 +16,7 @@ class VideoSchema(Schema):
     video: str  # This will store the file URL as a string
     publish: datetime
     slug: str
+    video_url: str  # This will be set in the API view
 
     class Config:
         from_attributes = True  # Allows conversion from Django model instances
