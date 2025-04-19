@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</a>
+          <Link href="/#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</Link>
           <a href="#demo" className="text-gray-300 hover:text-football-accent transition-colors">Demo</a>
           <Link href="/videos" className="text-gray-300 hover:text-football-accent transition-colors">Videos</Link>
         </nav>

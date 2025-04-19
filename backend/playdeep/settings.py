@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     #third party apps
+    'corsheaders',
     'taggit',
     'ninja_extra',
     'ninja_jwt',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,6 +66,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'playdeep.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # React app running on localhost:3000
+    'http://127.0.0.1:3000',  # React app running on localhost:3000
+]
 
 TEMPLATES = [
     {

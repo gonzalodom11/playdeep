@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <h4 className="font-semibold text-lg mb-4">Product</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Características</a></li>
+              <li><Link href="/#features" className="text-gray-300 hover:text-football-accent">Características</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Monetización</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>

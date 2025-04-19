@@ -24,16 +24,20 @@
         data.addColumn('string', 'Dependencies');
 
         data.addRows([
-          ['1', 'Inicio', '15 horas',
-            new Date(2025, 0, 23), new Date(2025, 1, 6), null,  100,  null],
-          ['2', 'Planificación', '50 horas',
-            new Date(2025, 1, 8), new Date(2025, 2, 5), null,  80,  '1'],
-          ['3', 'Ejecucción', '200 horas',
-            new Date(2025, 2, 3), new Date(2025, 4, 7), null,  20,  '2'],
-          ['4', 'Seguimiento', '25 horas',
+          ['1', 'Deep Learning', '15 horas', 
+          new Date(2025, 2, 3), new Date(2025, 2, 14), null,  100,  null],
+          ['2', 'Base de Datos', '15 horas',
+            new Date(2025, 2, 15), new Date(2025, 2, 24), null,  100,  null],
+          ['3', 'Backend-Django', '25 horas',
+            new Date(2025, 2, 22), new Date(2025, 2, 29), null,  80,  '1'],
+          ['4', 'Frontend-Nextjs', '25 horas',
+            new Date(2025, 2, 13), new Date(2025, 4, 7), null,  20,  '2'],
+          ['5', 'Despliegue', '15 horas',
             new Date(2025, 4, 8), new Date(2025, 4, 15), null,  0,  '3'],
-            ['5', 'Cierre', '10 horas',
+          ['6', 'Seguimiento', '10 horas',
             new Date(2025, 4, 17), new Date(2025, 4, 20), null,  0,  '4'],
+          ['7', 'Cierre', '10 horas',
+            new Date(2025, 4, 17), new Date(2025, 4, 20), null,  0,  '5']
         ]);
 
         var options = {
@@ -52,7 +56,7 @@
     </script>
   </head>
   <body>
-    <h2>Línea Temporal PlayDeep</h2>
+    <h2>Línea Temporal Desarrollo de PlayDeep</h2>
     <div id="gantt_chart"></div>
   </body>
 </html>
