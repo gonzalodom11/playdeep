@@ -88,7 +88,8 @@ def object_detection(request, year, month, day, video):
         return HttpResponse(f"Error: Environment key missing", status=500)
     
 
-    video_url = video.video.url
+    full_host = request.build_absolute_uri('/')[:-1]  # removes trailing slash
+    video.video_url = f"{full_host}{video.video.url}"
     
 
     box_annotator = sv.BoxAnnotator(
@@ -100,13 +101,28 @@ def object_detection(request, year, month, day, video):
         text_color=sv.Color.from_hex('#000000')
     )
 
-    frame_generator = sv.get_video_frames_generator(video_url)
-    frame = next(frame_generator)
+    frame_generator = sv.get_video_frames_generator(video.video_url)
+    
+    # Select the 10th frame (index 9, as indexing starts from 0)
+    frame_index = 100
+    for _ in range(frame_index):
+        frame = next(frame_generator)
 
-    result = PLAYER_DETECTION_MODEL.infer(frame, confidence=0.3)[0]
+    result_list = PLAYER_DETECTION_MODEL.predict(frame, confidence=0.3)
+
+    # result_list is a list of detections
+    prediction_json = {
+        "image": {
+            "width": frame.shape[1],
+            "height": frame.shape[0],
+        },
+        "predictions": [result.json() for result in result_list]  # Loop through ALL predictions
+    }
+
+    
     #We passed the detection results into a supervision.Detections object for easier handling
-    detections = sv.Detections.from_inference(result)
-
+    detections = sv.Detections.from_inference(prediction_json)
+    
     labels = [
         f"{class_name} {confidence:.2f}"
         for class_name, confidence
