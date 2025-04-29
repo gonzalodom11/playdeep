@@ -24,7 +24,7 @@
     border-radius: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    height: 350px;
+    height: 400px;
     max-width: 480px; 
     width: 100%;
     overflow: hidden;
@@ -32,6 +32,29 @@
     flex-direction: column; /* stack child elements vertically */
   }
   .overflow-style:hover {
+    background-color: #144272; /* bg-football-medium */
+    border-color: #38E54D;     /* hover:border-football-accent */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* example hover shadow */
+  }
+
+  .video-detail {
+    background-color: rgba(20, 66, 114, 0.5); /* bg-football-medium/50 */
+    border: 1px solid #0A2647;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    height: 500px;
+    max-width: 800px; 
+    width: 100%;
+    overflow: hidden;
+    display: flex; /* align child elements*/
+    flex-direction: column; /* stack child elements vertically */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .video-detail:hover {
     background-color: #144272; /* bg-football-medium */
     border-color: #38E54D;     /* hover:border-football-accent */
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* example hover shadow */
