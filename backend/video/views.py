@@ -68,11 +68,11 @@ def video_detail(request, year, month, day, video):
         {'video': video}
     )
 
-def object_detection(request, year, month, day, video):
+def object_detection(request, year, month, day, slug):
 
     video = get_object_or_404(
         Video,
-        slug=video,
+        slug=slug,
         publish__year=year,
         publish__month=month,
         publish__day=day
