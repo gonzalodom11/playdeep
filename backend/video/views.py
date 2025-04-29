@@ -68,7 +68,7 @@ def video_detail(request, year, month, day, video):
         {'video': video}
     )
 
-def object_detection(request, year, month, day, slug):
+def object_detection(request, year, month, day, slug, frame_selected):
 
     video = get_object_or_404(
         Video,
@@ -104,17 +104,16 @@ def object_detection(request, year, month, day, slug):
     frame_generator = sv.get_video_frames_generator(video.video_url)
     
     # Select the 10th frame (index 9, as indexing starts from 0)
-    frame_index = 100
-    for _ in range(frame_index):
-        frame = next(frame_generator)
+    for _ in range(frame_selected):
+        frame_res = next(frame_generator)
 
-    result_list = PLAYER_DETECTION_MODEL.predict(frame, confidence=0.3)
+    result_list = PLAYER_DETECTION_MODEL.predict(frame_res, confidence=0.3)
 
     # result_list is a list of detections
     prediction_json = {
         "image": {
-            "width": frame.shape[1],
-            "height": frame.shape[0],
+            "width": frame_res.shape[1],
+            "height": frame_res.shape[0],
         },
         "predictions": [result.json() for result in result_list]  # Loop through ALL predictions
     }
@@ -129,7 +128,7 @@ def object_detection(request, year, month, day, slug):
         in zip(detections['class_name'], detections.confidence)
     ]
 
-    annotated_frame = frame.copy()
+    annotated_frame = frame_res.copy()
     annotated_frame = box_annotator.annotate(
         scene=annotated_frame,
         detections=detections)

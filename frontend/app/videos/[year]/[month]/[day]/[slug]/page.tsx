@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Camera} from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,23 +14,32 @@ const imageFetcher = (...args: [RequestInfo | URL, RequestInit?]) =>
   fetch(...args).then(res => res.blob()).then(blob => URL.createObjectURL(blob));
 
 const VideoDetail = () => {
-  const [detectedPressDetect, setDetectedImage] = useState<boolean | null>(false);
+  const [detectedPress, setDetectedPress] = useState<boolean | null>(false);
+  const [frameNumber, setFrameNumber] = useState<number>(10);
+
   const params = useParams();
   const { year, month, day, slug } = params as { year: string; month: string; day: string; slug: string };    
   const { data: video, error, isLoading } = useSWR(`${apiUrl}${year}/${month}/${day}/${slug}`, fetcher);
-  const { data: detectPlayer } = 
-    useSWR(video ? `${apiUrl}${year}/${month}/${day}/${slug}/detect-players`:null, 
-    imageFetcher, {revalidateOnFocus: false});
+  // Usar frameNumber como query param
+  const { data: detectPlayer } = useSWR(
+    detectedPress ? `${apiUrl}${year}/${month}/${day}/${slug}/detect-players?frame=${frameNumber}` : null,
+    imageFetcher,
+    { revalidateOnFocus: false }
+  );
 
-  
+  useEffect(() => {  
+    setDetectedPress(false); // reset automatically after loading
+    
+  }, [frameNumber]);
+
   if (isLoading)  return <div className="text-white">Loading...</div>;
   if (error) return <div className="text-white">Error loading video</div>;
+  
   
 
   const handleDetectPlayer = () => {
     // For demonstration, we'll use a placeholder image
-
-    setDetectedImage(true); 
+    setDetectedPress(true); 
   };
 
   if (!video) {
@@ -40,34 +49,44 @@ const VideoDetail = () => {
   return (
     <div className="container mx-auto px-4 py-8" >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
-        <Card className="video-detail mt-10">
-        <div className="relative h-full aspect-video w-full rounded-xl mb-3">
-        <video
-          src={video.video_url}
-          controls
-          className="w-full h-full object-cover rounded-xl mb-3"
-        /> 
-      </div>
+        <Card className="video-detail mt-8">
+          <div className="relative h-full aspect-video w-full rounded-xl mb-3">
+          <video
+            src={video.video_url}
+            controls
+            className="w-full h-full object-cover rounded-xl mb-3"
+          /> 
+          </div>
     {/* Bottom info section */}
-    <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
-      <h1 className="flex items-center text-lg z-10 font-semibold">{video.caption}</h1>
-      {video && <Button 
-            onClick={handleDetectPlayer}
-            className="w-full bg-primary hover:bg-primary/90"
-          >
-            <Camera className="mr-2" />
-            Detect Player
-          </Button>}
-    </div>
+          <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
+            <h1 className="flex items-center text-lg z-10 font-semibold">{video.caption}</h1>
+            <label className="text-white mb-2">
+              Frame Number:
+              <input 
+                type="number"
+                className="ml-2 p-1 rounded text-black bg-white"
+                value={frameNumber}
+                min={0}
+                onChange={(e) => setFrameNumber(parseInt(e.target.value))}
+              />
+            </label>
+            {video && <Button 
+                  onClick={handleDetectPlayer}
+                  className="w-full bg-primary hover:bg-primary/90"
+                >
+                  <Camera className="mr-2" />
+                  Detect Players
+                </Button>}
+          </div>
         </Card>
-        {!detectPlayer && detectedPressDetect && (
+        {!detectPlayer && detectedPress && (
             <Card className="video-detail">
               <div className="aspect-video relative">
-                Loading detected player image...
+                Loading detected players image...
               </div>
             </Card>
           )}
-          {detectPlayer && detectedPressDetect && (
+          {detectPlayer && detectedPress && (
             <Card className="video-detail">
               <div className="aspect-video relative">
                 <img 
@@ -76,7 +95,12 @@ const VideoDetail = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
+              <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
+                <h1 className="flex items-center text-lg z-10 font-semibold">Detección de los jugadores, los árbitros y el balón. Nivel de fiabilidad mínimo 0.3.</h1>  
+                <h1 className="flex items-center text-lg z-10 font-semibold">Frame Number: {frameNumber ?? "N/A"}</h1> 
+              </div>
             </Card>
+            
           )}
         </div>
       </div>

@@ -38,5 +38,5 @@ def get_video(request, slug: str, year: int, month: int, day: int):
     return video
 
 @router.get("{year}/{month}/{day}/{slug}/detect-players")
-def detect_players(request, year: int, month: int, day: int, slug: str):
-    return object_detection(request, year, month, day, slug)
+def detect_players(request, year: int, month: int, day: int, slug: str, frame: int):
+    return object_detection(request, year, month, day, slug, frame)
