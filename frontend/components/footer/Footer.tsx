@@ -41,9 +41,9 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <h4 className="font-semibold text-lg mb-4">Equipo</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Acerca de nosotros</a></li>
+              <li><a href="https://gonzalodom11.github.io/" className="text-gray-300 hover:text-football-accent">Acerca del autor</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Trabajos</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Contacto</a></li>
+              <li><a href="https://www.linkedin.com/in/gonzalodm9/" className="text-gray-300 hover:text-football-accent">Contacto</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Política de privacidad</a></li>
             </ul>
           </div>
