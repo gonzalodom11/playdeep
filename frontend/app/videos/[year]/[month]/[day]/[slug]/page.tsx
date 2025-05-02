@@ -16,6 +16,7 @@ const imageFetcher = (...args: [RequestInfo | URL, RequestInit?]) =>
 const VideoDetail = () => {
   const [detectedPress, setDetectedPress] = useState<boolean | null>(false);
   const [frameNumber, setFrameNumber] = useState<number>(10);
+  const [outputFrame, setOutputFrame] = useState<string | null>("10");
 
   const params = useParams();
   const { year, month, day, slug } = params as { year: string; month: string; day: string; slug: string };    
@@ -65,9 +66,15 @@ const VideoDetail = () => {
               <input 
                 type="number"
                 className="ml-2 p-1 rounded text-black bg-white"
-                value={frameNumber}
+                value={outputFrame ?? ""}
                 min={0}
-                onChange={(e) => setFrameNumber(parseInt(e.target.value))}
+                onChange={(e) => {
+                  setDetectedPress(false); // reset automatically after loading
+                  const value = e.target.value;
+                  setFrameNumber(value == '' ? 1 : parseInt(e.target.value))
+                  setOutputFrame(value)}
+                  
+                }
               />
             </label>
             {video && <Button 
