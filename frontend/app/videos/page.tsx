@@ -63,7 +63,7 @@ const VideoCard = ({ video }: { video: Video }) => {
       {/* Imagen 16:9 con overlay */}
       <div className="relative h-full aspect-video w-full rounded-xl mb-3">
         <video
-          src={video.video_url}
+          src={video.video}
           controls
           className="w-full h-full object-cover rounded-xl mb-3"
         /> 
