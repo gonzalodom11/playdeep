@@ -2,11 +2,12 @@ from django.utils import timezone
 from django.db import models
 from django.urls import reverse
 from .validators import file_size
+from .storage_backend import AzureMediaStorage
 # Create your models here.
 
 class Video(models.Model):
     caption = models.CharField(max_length=100)
-    video= models.FileField(upload_to='videos/%y', validators=[file_size])
+    video= models.FileField(storage=AzureMediaStorage, upload_to='%y/%m/%d', validators=[file_size])
     publish = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(
         max_length=250,
