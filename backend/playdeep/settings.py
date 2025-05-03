@@ -157,3 +157,6 @@ NINJA_JWT = {
     'ACCESS_TOKEN_LIFETIME': datatime.timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': datatime.timedelta(days=3),
 }
+
+# Azure Storage settings
+DEFAULT_FILE_STORAGE = 'video.storage_backends.AzureMediaStorage'

@@ -68,7 +68,7 @@ def video_detail(request, year, month, day, video):
         {'video': video}
     )
 
-def object_detection(request, year, month, day, slug):
+def object_detection(request, year, month, day, slug, frame_selected):
 
     video = get_object_or_404(
         Video,
@@ -87,9 +87,6 @@ def object_detection(request, year, month, day, slug):
     except Exception as e:
         return HttpResponse(f"Error: Environment key missing", status=500)
     
-
-    full_host = request.build_absolute_uri('/')[:-1]  # removes trailing slash
-    video.video_url = f"{full_host}{video.video.url}"
     
 
     box_annotator = sv.BoxAnnotator(
@@ -101,20 +98,19 @@ def object_detection(request, year, month, day, slug):
         text_color=sv.Color.from_hex('#000000')
     )
 
-    frame_generator = sv.get_video_frames_generator(video.video_url)
-    
-    # Select the 10th frame (index 9, as indexing starts from 0)
-    frame_index = 100
-    for _ in range(frame_index):
-        frame = next(frame_generator)
+    frame_generator = sv.get_video_frames_generator(video.video.url)
 
-    result_list = PLAYER_DETECTION_MODEL.predict(frame, confidence=0.3)
+    # Select the 10th frame (index 9, as indexing starts from 0)
+    for _ in range(frame_selected):
+        frame_res = next(frame_generator)
+
+    result_list = PLAYER_DETECTION_MODEL.predict(frame_res, confidence=0.3)
 
     # result_list is a list of detections
     prediction_json = {
         "image": {
-            "width": frame.shape[1],
-            "height": frame.shape[0],
+            "width": frame_res.shape[1],
+            "height": frame_res.shape[0],
         },
         "predictions": [result.json() for result in result_list]  # Loop through ALL predictions
     }
@@ -129,7 +125,7 @@ def object_detection(request, year, month, day, slug):
         in zip(detections['class_name'], detections.confidence)
     ]
 
-    annotated_frame = frame.copy()
+    annotated_frame = frame_res.copy()
     annotated_frame = box_annotator.annotate(
         scene=annotated_frame,
         detections=detections)
@@ -146,58 +142,6 @@ def object_detection(request, year, month, day, slug):
 
     return HttpResponse(buffer.getvalue(), content_type="image/png")
 
-
-def object_detection_plot():
-    
-    try:
-        ROBOFLOW_API_KEY = config('ROBOFLOW_API_KEY')
-        PLAYER_DETECTION_MODEL_ID = "football-players-detection-3zvbc/11"
-        PLAYER_DETECTION_MODEL = get_model(model_id=PLAYER_DETECTION_MODEL_ID, api_key=ROBOFLOW_API_KEY)
-    except Exception as e:
-        return HttpResponse(f"Error: Environment key missing", status=500)
-    
-
-    video_url = config(r'VIDEO_EXAMPLE')
-    
-
-    box_annotator = sv.BoxAnnotator(
-    color=sv.ColorPalette.from_hex(['#FF8C00', '#00BFFF', '#FF1493', '#FFD700']),
-    thickness=2
-    )
-    label_annotator = sv.LabelAnnotator(
-        color=sv.ColorPalette.from_hex(['#FF8C00', '#00BFFF', '#FF1493', '#FFD700']),
-        text_color=sv.Color.from_hex('#000000')
-    )
-
-    frame_generator = sv.get_video_frames_generator(video_url)
-    frame = next(frame_generator)
-
-    result = PLAYER_DETECTION_MODEL.infer(frame, confidence=0.3)[0]
-    #We passed the detection results into a supervision.Detections object for easier handling
-    detections = sv.Detections.from_inference(result)
-
-    labels = [
-        f"{class_name} {confidence:.2f}"
-        for class_name, confidence
-        in zip(detections['class_name'], detections.confidence)
-    ]
-
-    annotated_frame = frame.copy()
-    annotated_frame = box_annotator.annotate(
-        scene=annotated_frame,
-        detections=detections)
-    annotated_frame = label_annotator.annotate(
-        scene=annotated_frame,
-        detections=detections,
-        labels=labels)
-        
-
-    # Convert to image and serve as a response
-    image = Image.fromarray(cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB))
-    buffer = io.BytesIO()
-    image.save(buffer, format="PNG")
-
-    sv.plot_image(annotated_frame)
 
 
 
