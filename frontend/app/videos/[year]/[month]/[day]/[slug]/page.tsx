@@ -53,7 +53,7 @@ const VideoDetail = () => {
         <Card className="video-detail mt-8">
           <div className="relative h-full aspect-video w-full rounded-xl mb-3">
           <video
-            src={video.video_url}
+            src={video.video}
             controls
             className="w-full h-full object-cover rounded-xl mb-3"
           /> 
