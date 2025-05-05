@@ -24,6 +24,9 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     # for CairoSVG
     libcairo2 \
+    # for OpenCV
+    libgl1 \
+    libglib2.0-0 \
     # other
     gcc \
     libgl1 \
