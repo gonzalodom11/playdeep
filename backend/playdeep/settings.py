@@ -28,7 +28,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', cast=str)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DJANGO_DEBUG', cast=bool, default=False)
 
-ALLOWED_HOSTS = ["*"]  # Allow all hosts for development purposes
+ALLOWED_HOSTS = [".railway.app"]  # Allow all hosts for development purposes
 
 
 SITE_ID = 1
@@ -63,6 +63,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+    "http://*.railway.app",
 ]
 
 ROOT_URLCONF = 'playdeep.urls'
