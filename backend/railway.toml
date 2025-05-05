@@ -1,12 +1,9 @@
-{
-    "build": {
-        "builder": "DOCKERFILE",
-        "dockerfilePath": "./Dockerfile",
-        "watchPatterns": [
-            "requirements.txt",
-            "src/**",
-            "railway.json",
-            "Dockerfile"
-        ]
-    }
-}
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "./Dockerfile"
+watchPatterns = [
+    "requirements.txt", 
+    "src/**", 
+    "railway.toml",
+    "Dockerfile",
+]
