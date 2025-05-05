@@ -5,4 +5,5 @@ watchPatterns = [
     "requirements.txt",
     "railway.toml",
     "Dockerfile",
+    "playdeep/settings.py"
 ]
