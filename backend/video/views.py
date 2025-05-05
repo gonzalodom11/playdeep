@@ -11,7 +11,6 @@ from SoccerNet.Downloader import SoccerNetDownloader
 import cv2
 from PIL import Image
 import io
-from inference import get_model
 import warnings
 
 
