@@ -3,7 +3,7 @@ from ninja import Router
 from .models import Video  # Import the Video model
 from django.shortcuts import get_object_or_404  # Import get_object_or_404
 from .schemas import VideoSchema, VideoCreateSchema  # Import the schemas
-from .views import object_detection 
+
 
 
 router = Router()
@@ -39,4 +39,5 @@ def get_video(request, slug: str, year: int, month: int, day: int):
 
 @router.get("{year}/{month}/{day}/{slug}/detect-players")
 def detect_players(request, year: int, month: int, day: int, slug: str, frame: int):
+    from .views import object_detection 
     return object_detection(request, year, month, day, slug, frame)
