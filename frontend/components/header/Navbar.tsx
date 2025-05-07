@@ -30,14 +30,14 @@ const Navbar: React.FC = () => {
         </nav>
         
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-football-medium dark:text-gray-300">
-            <Search size={20} />
-          </Button>
-          <Button variant="outline" className="hidden md:flex">Sign In</Button>
-          <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
-            <span className="hidden md:inline">Comenzar</span>
-            <User size={18} className="md:hidden" />
-          </Button>
+          <Link href="/auth">
+            <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
+          </Link>
+          <Link href="/videos">
+            <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
+              <span className="hidden md:inline">Comenzar</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
