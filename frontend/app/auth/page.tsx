@@ -1,0 +1,220 @@
+"use client";
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
+import { UserRound, Mail, Lock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import axios from 'axios';
+
+
+
+const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
+const AuthScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { toast } = useToast();
+
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const form = e.target as HTMLFormElement;
+      const response = await axios.post(`${apiUrl}/auth/login`, {
+        username: form.username.value,
+        password: form.password.value,
+      });
+
+      if (response.data.success) {
+        toast({
+          title: "Logged in successfully",
+          description: "Welcome back to Game Vision",
+        });
+      } else {
+        toast({
+          title: "Login failed",
+          description: response.data.message,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "An error occurred during login",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Mock registration process - replace with actual authentication
+    setTimeout(() => {
+      setIsLoading(false);
+      toast({
+        title: "Registration successful",
+        description: "Your account has been created",
+      });
+    }, 1500);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-football-dark to-football-medium p-4">
+      <Card className="w-full max-w-md bg-white/10 backdrop-blur-md border-football-medium shadow-xl">
+        <CardHeader className="text-center">
+          <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-football-accent flex items-center justify-center">
+            <span className="text-football-dark font-bold text-2xl">PD</span>
+          </div>
+          <CardTitle className="text-2xl font-bold text-white">Bienvenido a Playdeep</CardTitle>
+          <CardDescription className="text-gray-300">
+            Inicia sesión para acceder a las herramientas de análisis de partidos
+          </CardDescription>
+        </CardHeader>
+        <Tabs defaultValue="login" className="px-6">
+          <TabsList className="grid w-full grid-cols-2 bg-football-medium/50">
+            <TabsTrigger value="login" className="data-[state=active]:bg-football-accent data-[state=active]:text-football-dark">Iniciar sesión</TabsTrigger>
+            <TabsTrigger value="register" className="data-[state=active]:bg-football-accent data-[state=active]:text-football-dark">Registrarse</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="login">
+            <form onSubmit={handleLogin}>
+              <CardContent className="space-y-4 pt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="username" className="text-white">Nombre de usuario</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input 
+                      id="username" 
+                      type="username" 
+                      placeholder="coach10" 
+                      className="pl-10 bg-football-dark/30 text-white border-football-medium/50 focus-visible:ring-football-accent"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="password" className="text-white">Contraseña</Label>
+                    <a href="#" className="text-xs text-football-accent hover:text-football-accent/80">
+                      Forgot password?
+                    </a>
+                  </div>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input 
+                      id="password" 
+                      type="password" 
+                      placeholder="••••••••" 
+                      className="pl-10 bg-football-dark/30 text-white border-football-medium/50 focus-visible:ring-football-accent"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="remember" />
+                  <label
+                    htmlFor="remember"
+                    className="text-sm font-medium text-gray-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Mantener sesión iniciada
+                  </label>
+                </div>
+              </CardContent>
+              
+              <CardFooter>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-football-accent hover:bg-football-accent/90 text-football-dark"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Logging in..." : "Iniciar sesión"}
+                </Button>
+              </CardFooter>
+            </form>
+          </TabsContent>
+          
+          <TabsContent value="register">
+            <form onSubmit={handleRegister}>
+              <CardContent className="space-y-4 pt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="register-name" className="text-white">Nombre de usuario</Label>
+                  <div className="relative">
+                    <UserRound className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input 
+                      id="register-name" 
+                      type="text" 
+                      placeholder="coach10" 
+                      className="pl-10 bg-football-dark/30 text-white border-football-medium/50 focus-visible:ring-football-accent"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="register-email" className="text-white">Email</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input 
+                      id="register-email" 
+                      type="email" 
+                      placeholder="coach@example.com" 
+                      className="pl-10 bg-football-dark/30 text-white border-football-medium/50 focus-visible:ring-football-accent"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="register-password" className="text-white">Contraseña</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input 
+                      id="register-password" 
+                      type="password" 
+                      placeholder="••••••••" 
+                      className="pl-10 bg-football-dark/30 text-white border-football-medium/50 focus-visible:ring-football-accent"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" required />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium text-gray-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I agree to the <a href="#" className="text-football-accent hover:text-football-accent/80">Terms of Service</a>
+                  </label>
+                </div>
+              </CardContent>
+              
+              <CardFooter>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-football-accent hover:bg-football-accent/90 text-football-dark"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Creating Account..." : "Crear cuenta"}
+                </Button>
+              </CardFooter>
+            </form>
+          </TabsContent>
+        </Tabs>
+      </Card>
+    </div>
+  );
+};
+
+export default AuthScreen; 

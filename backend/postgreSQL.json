@@ -7,7 +7,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "1",
-    "object_repr": "Inauguraci�n de play deep",
+    "object_repr": "Inauguración de play deep",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -20,7 +20,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "1",
-    "object_repr": "Inauguraci�n de Play Deep",
+    "object_repr": "Inauguración de Play Deep",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
   }
@@ -33,7 +33,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "1",
-    "object_repr": "Inauguraci�n de Play Deep",
+    "object_repr": "Inauguración de Play Deep",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
   }
@@ -46,7 +46,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -59,7 +59,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "4",
-    "object_repr": "\"Al Atl�tico le falt� colmillo en el Bernab�u\"",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -72,7 +72,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "5",
-    "object_repr": "Kiat Lim visit� el Nuevo Mestalla en su visita rel�mpago: �Un proyecto clave en la generaci�n de nuevas v�as de ingreso�",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -85,7 +85,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "6",
-    "object_repr": "Pellegrini: \"Isco est� en un buen momento futbol�stico y de madurez, ojal� vuelva a la Selecci�n\"",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -111,7 +111,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "8",
-    "object_repr": "El mundo del f�tbol se rinde ante Isco: \"Es el mejor compa�ero que he visto en toda mi carrera\"",
+    "object_repr": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }
@@ -124,7 +124,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "6",
-    "object_repr": "Pellegrini: \"Isco est� en un buen momento futbol�stico y de madurez, ojal� vuelva a la Selecci�n\"",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
   }
@@ -176,7 +176,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -189,7 +189,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "4",
-    "object_repr": "\"Al Atl�tico le falt� colmillo en el Bernab�u\"",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -202,7 +202,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "5",
-    "object_repr": "Kiat Lim visit� el Nuevo Mestalla en su visita rel�mpago: �Un proyecto clave en la generaci�n de nuevas v�as de ingreso�",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -215,7 +215,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "5",
-    "object_repr": "Kiat Lim visit� el Nuevo Mestalla en su visita rel�mpago: �Un proyecto clave en la generaci�n de nuevas v�as de ingreso�",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -241,7 +241,7 @@
     "user": 1,
     "content_type": 9,
     "object_id": "6",
-    "object_repr": "Atl�tico de Madrid",
+    "object_repr": "Atlético de Madrid",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"Slug\"]}}]"
   }
@@ -254,7 +254,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 2,
     "change_message": "[]"
   }
@@ -267,7 +267,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 2,
     "change_message": "[]"
   }
@@ -280,7 +280,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -293,7 +293,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "1",
-    "object_repr": "Inauguraci�n de Play Deep",
+    "object_repr": "Inauguración de Play Deep",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -306,7 +306,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "3",
-    "object_repr": "Recuperar al Mbapp� del City, la obsesi�n del Real Madrid",
+    "object_repr": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -319,7 +319,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "5",
-    "object_repr": "Kiat Lim visit� el Nuevo Mestalla en su visita rel�mpago: �Un proyecto clave en la generaci�n de nuevas v�as de ingreso�",
+    "object_repr": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -332,7 +332,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "6",
-    "object_repr": "Pellegrini: \"Isco est� en un buen momento futbol�stico y de madurez, ojal� vuelva a la Selecci�n\"",
+    "object_repr": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -345,7 +345,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "4",
-    "object_repr": "\"Al Atl�tico le falt� colmillo en el Bernab�u\"",
+    "object_repr": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -371,7 +371,7 @@
     "user": 1,
     "content_type": 7,
     "object_id": "8",
-    "object_repr": "El mundo del f�tbol se rinde ante Isco: \"Es el mejor compa�ero que he visto en toda mi carrera\"",
+    "object_repr": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
   }
@@ -410,7 +410,7 @@
     "user": 1,
     "content_type": 8,
     "object_id": "6",
-    "object_repr": "Atl�tico de Madrid",
+    "object_repr": "Atlético de Madrid",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"name\": \"tagged item\", \"object\": \"\\\"Al Atl\\u00e9tico le falt\\u00f3 colmillo en el Bernab\\u00e9u\\\" tagged with Atl\\u00e9tico de Madrid\", \"fields\": [\"Content type\"]}}]"
   }
@@ -1551,7 +1551,7 @@
   "model": "taggit.tag",
   "pk": 6,
   "fields": {
-    "name": "Atl�tico de Madrid",
+    "name": "Atlético de Madrid",
     "slug": "atletico-de-madrid"
   }
 },
@@ -1757,6 +1757,191 @@
   "model": "blog.post",
   "pk": 1,
   "fields": {
-    "title": "Inauguraci�n de Play Deep",
+    "title": "Inauguración de Play Deep",
     "slug": "inauguracion-playdeep",
-    "body": 
+    "body": "Bienvenidos a Play Deep, el nuevo rincón para los verdaderos amantes del fútbol! 🌍⚽️\r\n\r\nAquí encontrarás análisis, noticias, curiosidades y opiniones sobre el deporte rey, con una mirada fresca y profunda. Desde las mejores jugadas hasta las tácticas más innovadoras, queremos compartir nuestra pasión por el fútbol contigo.\r\n\r\n¡Arrancamos esta aventura y te invitamos a ser parte de ella! 🔥⚽️\r\n\r\n#PlayDeep #Fútbol #PasiónPorElFútbol",
+    "publish": "2025-03-01T18:43:22Z",
+    "created": "2025-03-01T18:47:13.844Z",
+    "updated": "2025-03-05T21:37:30.427Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "title": "New title",
+    "slug": "another-post",
+    "body": "Post body.",
+    "publish": "2025-03-01T18:56:04.090Z",
+    "created": "2025-03-01T18:56:10.261Z",
+    "updated": "2025-03-01T18:57:02.690Z",
+    "status": "DF",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 3,
+  "fields": {
+    "title": "Recuperar al Mbappé del City, la obsesión del Real Madrid",
+    "slug": "recuperar-al-mbappe-del-city-la-obsesion-del-real-madrid",
+    "body": "El Real Madrid llegaba al primero de los partidos ante el Atlético de Madrid tocado, con numerosas bajas y por lo visto sobre césped del Bernabéu, con una ausencia inesperada. Tanto es así que la inmediata misión del cuerpo técnico madridista no es otra que recuperar a Kylian Mbappé para lo que queda de temporada.  Ha desconectado en las últimas semanas, justo cuando más le necesitaba su equipo.",
+    "publish": "2025-03-05T19:50:50Z",
+    "created": "2025-03-05T19:54:21.048Z",
+    "updated": "2025-03-05T21:38:10.139Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 4,
+  "fields": {
+    "title": "\"Al Atlético le faltó colmillo en el Bernabéu\"",
+    "slug": "al-atletico-le-falto-colmillo-en-el-bernabeu",
+    "body": "Al Atlético de Madrid le faltó colmillo, le faltó hambre para sacar un mejor resultado del Santiago Bernabéu. \r\nLa sensación es que el Real Madrid gana más en lo psicológico que en lo numérico, porque el Atlético, durante una gran fase del partido, fue mejor y dominó al conjunto de Carlo Ancelotti.",
+    "publish": "2025-03-05T19:54:21Z",
+    "created": "2025-03-05T19:55:12.744Z",
+    "updated": "2025-03-05T21:40:02.621Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 5,
+  "fields": {
+    "title": "Kiat Lim visitó el Nuevo Mestalla en su visita relámpago: “Un proyecto clave en la generación de nuevas vías de ingreso”",
+    "slug": "kiat-lim-visito-el-nuevo-mestalla-en-su-visita-relampago-un-proyecto-clave-en-la-generacion-de-nuevas-vias-de-ingreso",
+    "body": "Kiat Lim, nuevo presidente del Valencia, tuvo su protocolario paso por las obras del Nuevo Mestalla, en las horas que pasó por la capital del Turia para ser elegido máximo responsable ejecutivo del club. No advirtió mucho cambio con respecto al aspecto que tenía el esqueleto del futuro coliseo blanquinegro cuando lo pisó la primera vez en diciembre de 2022. Entonces no había obreros trabajando, pero en los dos meses que han pasado desde la reanudación de las obras tampoco ha habido tiempo para mucho.",
+    "publish": "2025-03-05T19:55:12Z",
+    "created": "2025-03-05T19:56:23.535Z",
+    "updated": "2025-03-05T21:38:32.045Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 6,
+  "fields": {
+    "title": "Pellegrini: \"Isco está en un buen momento futbolístico y de madurez, ojalá vuelva a la Selección\"",
+    "slug": "pellegrini-isco-esta-en-un-buen-momento-futbolistico-y-de-madurez-ojala-vuelva-a-la-seleccion",
+    "body": "Entrenamiento.  Sin Lo Celso, Roca y Ortiz en la última sesión antes de recibir al Vitória\r\nManuel Pellegrini, técnico del Betis, ha comparecido este mediodía en la sala de prensa del estadio Benito Villamarín, acompañado por Cédric Bakambu, para analizar cómo afronta su equipo el partido de ida de los octavos de final de la Conference League que disputará mañana frente al Vitória Guimaraes.",
+    "publish": "2025-03-05T19:56:23Z",
+    "created": "2025-03-05T19:57:02.735Z",
+    "updated": "2025-03-05T21:39:11.480Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 7,
+  "fields": {
+    "title": "Ruiz de Galarreta: \"Ranieri y la Roma nos van a obligar a hacer dos partidos casi perfectos\"",
+    "slug": "ruiz-de-galarreta-ranieri-y-la-roma-nos-van-a-obligar-a-hacer-dos-partidos-casi-perfectos",
+    "body": "Iñigo Ruiz de Galarreta (31 años) cumple su segunda campaña en el regreso al Athletic tras hacer carrera en varios equipos hasta cumplir lo que considera un sueño. El centrocampista rojiblanco, que tiene todo cerrado para renovar el contrato que expira en junio, analiza en una charla con MARCA el momento del Athletic, la ilusión de equipo y afición por la Europa League y las dificultades que entrañará el doble compromiso con la Roma.",
+    "publish": "2025-03-05T19:57:02Z",
+    "created": "2025-03-05T19:57:35.119Z",
+    "updated": "2025-03-05T21:41:26.843Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 8,
+  "fields": {
+    "title": "El mundo del fútbol se rinde ante Isco: \"Es el mejor compañero que he visto en toda mi carrera\"",
+    "slug": "el-mundo-del-futbol-se-rinde-ante-isco-es-el-mejor-companero-que-he-visto-en-toda-mi-carrera",
+    "body": "El Betis conseguía ganar ante el Real Madrid en una auténtica exhibición de Isco Alarcón. Se hizo con el control del partido, repartió todo tipo de pases e incluso marcó el gol de la victoria. No ha sido un partido puntual; desde que volvió de su grave lesión ha cambiado totalmente la cara a su equipo. Un cúmulo de cosas que han hecho que muchos compañeros suyos elogien al malagueño. Aunque uno de los primeros que se deshizo ante su calidad fue su amigo Marcelo.",
+    "publish": "2025-03-05T19:58:28Z",
+    "created": "2025-03-05T19:58:53.390Z",
+    "updated": "2025-03-05T21:41:50.738Z",
+    "status": "PB",
+    "author": 1
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 1,
+  "fields": {
+    "post": 8,
+    "name": "Gonzalo",
+    "email": "7gonzalodm@gmail.com",
+    "body": "El gran juego del Betis, hizo un partido muy solido, tanto en ataque como en defensa",
+    "created": "2025-03-05T20:43:07.548Z",
+    "updated": "2025-03-05T20:43:07.548Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 2,
+  "fields": {
+    "post": 8,
+    "name": "Giovanni",
+    "email": "giovannidomenico@gmail.com",
+    "body": "La carrera de Isco está muy infravalorada",
+    "created": "2025-03-05T20:44:29.463Z",
+    "updated": "2025-03-05T20:44:29.463Z",
+    "active": true
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 3,
+  "fields": {
+    "post": 4,
+    "name": "Fernando",
+    "email": "fernandotrujillo@gmail.com",
+    "body": "Los dos equipos evitaron cualquier riesgo. La eliminatoria dura 180 min.",
+    "created": "2025-03-09T17:19:37.063Z",
+    "updated": "2025-03-09T17:19:37.063Z",
+    "active": true
+  }
+},
+{
+  "model": "video.video",
+  "pk": 10,
+  "fields": {
+    "caption": "Tottenham - Glimt",
+    "video": "25/05/03/tottenhamglimt.mp4",
+    "publish": "2025-05-03T18:59:26Z",
+    "slug": "tottenham-glimt"
+  }
+},
+{
+  "model": "video.video",
+  "pk": 11,
+  "fields": {
+    "caption": "Real Madrid - Girona 2025",
+    "video": "25/05/03/2025-RealMadrid-Girona.mp4",
+    "publish": "2025-05-03T19:03:47Z",
+    "slug": "real-madrid-girona-2025"
+  }
+},
+{
+  "model": "video.video",
+  "pk": 12,
+  "fields": {
+    "caption": "Koln Bundesliga",
+    "video": "25/05/03/Koln.mp4",
+    "publish": "2025-05-03T19:04:57Z",
+    "slug": "koln-bundesliga"
+  }
+},
+{
+  "model": "video.video",
+  "pk": 13,
+  "fields": {
+    "caption": "Borussia Monchengladbach",
+    "video": "25/05/03/B.Monchengladbach.mp4",
+    "publish": "2025-05-03T19:06:03Z",
+    "slug": "borussia-monchengladbach"
+  }
+}
+]
