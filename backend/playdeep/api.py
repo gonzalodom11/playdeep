@@ -40,10 +40,12 @@ def login_user(request, data: LoginSchema):
         return {"success": True, "message": "Logged in successfully"}
     else:
         return {"success": False, "message": "Invalid credentials"}
+    
+@router.get("/me", response=UserSchema, auth=JWTAuth())
+def me(request):
+    return request.user
+
 
 api.add_router("/auth", router)
 
 
-@api.get("/me", response=UserSchema, auth=JWTAuth())
-def me(request):
-    return request.user

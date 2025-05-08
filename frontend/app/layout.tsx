@@ -5,6 +5,8 @@ import "../index.css";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/header/Navbar";
 import {ClientQueryProvider} from "@/providers/client-query-provider";
+import { ToastProvider, ToastViewport } from "@/components/ui/toast"; // Import toast components
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +31,17 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ClientQueryProvider>
-        <div className="min-h-screen flex flex-col navbar-dark">
-          <Navbar />
-            <main className="flex-grow mt-16 bg-football-dark">{children}</main>
-          <Footer />
-        </div>
-        </ClientQueryProvider>
+        <ToastProvider>
+          <ClientQueryProvider>
+          <div className="min-h-screen flex flex-col navbar-dark">
+            <Navbar />
+              <main className="flex-grow mt-16 bg-football-dark">{children}</main>
+            <Footer />
+          </div>
+          </ClientQueryProvider>
+          <ToastViewport /> 
+        </ToastProvider>
+        
 
       </body>
     </html>

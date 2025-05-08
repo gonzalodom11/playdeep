@@ -110,6 +110,9 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
+        'OPTIONS': {
+            'sslmode': 'require',  # forces encrypted connection
+        },
     },
     'extra': {
        'ENGINE': 'django.db.backends.sqlite3',
