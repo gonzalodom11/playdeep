@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
               <li><a href="https://gonzalodom11.github.io/" className="text-gray-300 hover:text-football-accent">Acerca del autor</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Trabajos</a></li>
               <li><a href="https://www.linkedin.com/in/gonzalodm9/" className="text-gray-300 hover:text-football-accent">Contacto</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Política de privacidad</a></li>
+              <li><Link href="/privacyPolicy" className="text-gray-300 hover:text-football-accent">Política de privacidad</Link></li>
             </ul>
           </div>
         </div>
