@@ -48,7 +48,7 @@ const ProfileScreen = () => {
 
         <CardContent className="flex flex-col items-center space-y-4">
           <img
-            src="/default-avatar.jpg"
+            src="/user-profile.png"
             alt="Profile"
             className="w-28 h-28 rounded-full border-4 border-white shadow-md"
           />

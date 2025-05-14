@@ -1,13 +1,18 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Search, User } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    setIsLoggedIn(!!accessToken);
+  }, []);
   
   return (
     <header className="fixed top-0 left-0 right-0 bg-football-dark/80 backdrop-blur-md z-50 border-b border-football-medium">
@@ -25,7 +30,6 @@ const Navbar: React.FC = () => {
         
         <nav className="hidden md:flex items-center space-x-8">
           <Link href="/#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</Link>
-          <a href="#demo" className="text-gray-300 hover:text-football-accent transition-colors">Demo</a>
           <Link href="/videos" className="text-gray-300 hover:text-football-accent transition-colors">Videos</Link>
         </nav>
         
@@ -33,11 +37,13 @@ const Navbar: React.FC = () => {
           <Link href="/auth">
             <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
           </Link>
-          <Link href="/videos">
-            <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
-              <span className="hidden md:inline">Comenzar</span>
-            </Button>
-          </Link>
+          {isLoggedIn && (
+            <Link href="/profile">
+              <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
+                <span className="hidden md:inline">Profile</span>
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>
