@@ -2,6 +2,7 @@ from ninja import Schema
 from datetime import datetime
 from django.core.files.uploadedfile import UploadedFile
 from django.core.exceptions import ValidationError
+from playdeep.schemas import UserSchema  # Updated import path
 
 
 # Custom function to validate file type
@@ -17,6 +18,7 @@ class VideoSchema(Schema):
     publish: datetime
     slug: str
     video_url: str  # This will be set in the API view
+    user: UserSchema  # This will be populated with the user data
 
     class Config:
         from_attributes = True  # Allows conversion from Django model instances

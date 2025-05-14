@@ -1,29 +1,14 @@
-from ninja import NinjaAPI, Router, Schema
+from ninja import NinjaAPI, Router
 from ninja_jwt.controller import NinjaJWTDefaultController
 from ninja_jwt.authentication import JWTAuth
 from ninja_extra import NinjaExtraAPI
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-
-
+from .schemas import UserSchema, RegisterSchema, LoginSchema
 
 api = NinjaExtraAPI()
 api.register_controllers(NinjaJWTDefaultController)
 api.add_router("", "video.api.router")
-
-class UserSchema(Schema):
-    username: str
-    is_authenticated: bool
-    email: str = None
-
-class RegisterSchema(Schema):
-    username: str
-    email: str
-    password: str
-
-class LoginSchema(Schema):
-    username: str
-    password: str
 
 router = Router()
 
@@ -44,7 +29,6 @@ def login_user(request, data: LoginSchema):
 @router.get("/me", response=UserSchema, auth=JWTAuth())
 def me(request):
     return request.user
-
 
 api.add_router("/auth", router)
 
