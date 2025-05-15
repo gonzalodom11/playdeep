@@ -41,3 +41,12 @@ def get_video(request, slug: str, year: int, month: int, day: int):
 def detect_players(request, year: int, month: int, day: int, slug: str, frame: int):
     from .views import object_detection 
     return object_detection(request, year, month, day, slug, frame)
+
+@router.get("user/{username}", response=List[VideoSchema])
+def list_user_videos(request, username: str):
+    videos = Video.objects.filter(user__username=username)
+    full_host = request.build_absolute_uri('/')[:-1]  # removes trailing slash
+    print(videos)
+    for v in videos:
+        v.video_url = f"{full_host}{v.video.url}"
+    return videos
