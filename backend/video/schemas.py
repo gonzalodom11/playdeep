@@ -31,6 +31,5 @@ class VideoCreateSchema(Schema):
     class Config:
         arbitrary_types_allowed = True  # Allow arbitrary types like UploadedFile
 
-
     def validate(self):
         validate_video_file(self.video)
