@@ -43,6 +43,8 @@ const AuthScreen = () => {
         const refreshToken = response.data.refresh;
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
+        // Dispatch custom event for auth state change
+        window.dispatchEvent(new Event('authStateChange'));
         router.push('/profile'); // Redirect to profile screen
       } else {
         toast({

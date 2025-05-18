@@ -29,7 +29,17 @@ class VideoCreateSchema(Schema):
     caption: str
 
     class Config:
-        arbitrary_types_allowed = True  # Allow arbitrary types like UploadedFile
+        arbitrary_types_allowed = True
+
+    @staticmethod
+    def resolve_video(obj):
+        return obj.get('video')
+
+    @staticmethod
+    def resolve_caption(obj):
+        return obj.get('caption')
 
     def validate(self):
+        if not self.video:
+            raise ValidationError("Video file is required")
         validate_video_file(self.video)
