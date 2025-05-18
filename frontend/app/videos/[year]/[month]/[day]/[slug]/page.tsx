@@ -55,7 +55,7 @@ const VideoDetail = () => {
           <video
             src={video.video}
             controls
-            className="w-full h-full object-cover rounded-xl mb-3"
+            className="w-full h-full object-cover mb-3"
           /> 
           </div>
     {/* Bottom info section */}

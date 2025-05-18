@@ -4,15 +4,73 @@ import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
+import { getValidAccessToken } from '@/utils/auth';
+import { useRouter } from 'next/navigation';
 
 const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
+  const handleStorageChange = (e: StorageEvent) => {
+    if (e.key === 'accessToken') {
+      setAccessToken(e.newValue);
+      setIsLoggedIn(!!e.newValue);
+    }
+  };
+
+  const handleAuthChange = (e: Event) => {
+    const token = localStorage.getItem('accessToken');
+    setAccessToken(token);
+    setIsLoggedIn(!!token);
+  };
+
+  // Update accessToken when localStorage changes
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    setIsLoggedIn(!!accessToken);
-  }, []);
+    const checkAuth = async () => {
+      try {
+        await getValidAccessToken();
+        setIsLoggedIn(true);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+
+    // Initial check
+    checkAuth();
+    
+    // Add storage event listener
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Add custom event listener for auth changes
+    window.addEventListener('authStateChange', handleAuthChange);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('authStateChange', handleAuthChange);
+    };
+  }, [accessToken]);
+
+  const handleProfileClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      await getValidAccessToken();
+      router.push('/profile');
+    } catch {
+      setIsLoggedIn(false);
+      router.push('/auth');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    setAccessToken(null);
+    setIsLoggedIn(false);
+    router.push('/auth');
+  };
   
   return (
     <header className="fixed top-0 left-0 right-0 bg-football-dark/80 backdrop-blur-md z-50 border-b border-football-medium">
@@ -31,19 +89,32 @@ const Navbar: React.FC = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <Link href="/#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</Link>
           <Link href="/videos" className="text-gray-300 hover:text-football-accent transition-colors">Videos</Link>
+          {isLoggedIn && (
+            <Link href="/upload" className="text-gray-300 hover:text-football-accent transition-colors">Upload</Link>
+          )}
         </nav>
         
         <div className="flex items-center space-x-2">
-          <Link href="/auth">
-            <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
-          </Link>
-          {isLoggedIn && (
-            <Link href="/profile">
-              <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
-                <span className="hidden md:inline">Profile</span>
+            {!isLoggedIn ? (
+              <Link href="/auth">
+                <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
+              </Link>
+            ) : (
+              <Button 
+                onClick={handleLogout}
+                variant="outline" 
+                className="hidden md:flex"
+              >
+                Cerrar sesión
               </Button>
-            </Link>
-          )}
+            )}
+          
+            <Button 
+              onClick={handleProfileClick}
+              className="bg-football-accent hover:bg-football-accent/90 text-football-dark"
+            >
+              <span className="hidden md:inline">Perfil</span>
+            </Button>
         </div>
       </div>
     </header>

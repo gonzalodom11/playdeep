@@ -172,3 +172,7 @@ NINJA_JWT = {
 
 # Azure Storage settings
 DEFAULT_FILE_STORAGE = 'video.storage_backends.AzureMediaStorage'
+
+# Increase the maximum file upload size to 100MB (or whatever size you need)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes
+FILE_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes

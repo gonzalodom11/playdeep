@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar} from "lucide-react";
+import { Calendar, User} from "lucide-react";
 import React from "react";
 import useSWR from "swr";
 import Link from "next/link";
@@ -24,7 +24,6 @@ const VideoScreen = () => {
 };
 const VideoList = () => {
   const {data, error, isLoading} = useSWR(apiUrl, fetcher);
-  console.log(data)
   if (isLoading)  return <div className="text-white">Loading...</div>;
   if (error) return <div className="text-white">Error loading videos</div>
   return (
@@ -44,9 +43,10 @@ interface Video {
   slug: string;
   video: string;
   video_url: string;
-  
+  user: {
+    username: string;
+  };
 }
-
 
 
 
@@ -65,22 +65,27 @@ const VideoCard = ({ video }: { video: Video }) => {
         <video
           src={video.video}
           controls
-          className="w-full h-full object-cover rounded-xl mb-3"
+          className="w-full h-full object-cover mb-3"
         /> 
       </div>
     {/* Bottom info section */}
     <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
       <h3 className="flex items-center text-lg z-10 font-semibold">{video.caption}</h3>
       <Link href={`/videos/${year}/${month}/${day}/${video.slug}`} className="w-full">
-        <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
+        <Button size="lg" className="bg-football-accent mt-2 hover:bg-football-accent/90 text-football-dark text-lg">
           Ver Video
         </Button>
       </Link>
-      <div className="flex items-center justify-between text-sm text-gray-300">
+      <div className="flex items-center justify-between text-sm text-gray-300  mt-2">
         <div className="flex items-center">
           <Calendar size={14} className="mr-4" />
           <span>{date_video}</span>
         </div>
+        <div className="flex items-center">
+          <User size={14} className="mr-4" />
+          <span>User: {video.user.username}</span>
+        </div>
+        
       </div>
     </div>
     
