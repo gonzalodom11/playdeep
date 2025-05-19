@@ -20,8 +20,8 @@ def list_videos(request):
     return videos
 
 
-@router.post("videos/upload", auth = JWTAuth(), response=VideoSchema)
-def create_video(request, data: VideoCreateSchema):
+@router.post("videos/upload", auth=JWTAuth(), response=VideoSchema)
+def create_video(request):
     try:
         print("Received files:", request.FILES)
         print("Received POST data:", request.POST)
@@ -32,19 +32,22 @@ def create_video(request, data: VideoCreateSchema):
         video_file = request.FILES['video']
         caption = request.POST.get('caption', '')
         
-        video_data = {
-            'user': request.user,
-            'caption': caption,
-            'video': video_file
-        }
-        
         # Validate file type
         allowed_types = ["video/mp4", "video/mkv", "video/avi", "video/webm"]
         if video_file.content_type not in allowed_types:
             raise ValidationError(f"Invalid video format. Allowed formats: {', '.join(allowed_types)}")
             
-        video = Video.objects.create(**video_data)
-        return video
+        video = Video.objects.create(
+            user=request.user,
+            caption=caption,
+            video=video_file
+        )
+        
+        full_host = request.build_absolute_uri('/')[:-1]
+        video.video_url = f"{full_host}{video.video.url}"
+        
+        # Convert to schema for JSON serialization
+        return VideoSchema.from_orm(video)
     except ValidationError as e:
         print(f"Validation error: {str(e)}")
         raise
