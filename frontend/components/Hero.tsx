@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Play } from 'lucide-react';
 import Link from 'next/link';
 
 
@@ -26,10 +25,10 @@ const Hero: React.FC = () => {
             <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
               <Link href={"/videos"}>Ver Videos</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
+            {/* <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
               <Play size={16} className="mr-2" />
               Datos de Videos
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

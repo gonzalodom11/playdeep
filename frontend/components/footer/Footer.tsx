@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               <li><Link href="/#features" className="text-gray-300 hover:text-football-accent">Características</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Monetización</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>
+               {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>*/}
             </ul>
           </div>
           
