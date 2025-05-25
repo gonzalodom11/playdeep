@@ -17,7 +17,6 @@ interface Video {
   video: string;
   publish: string;
   slug: string;
-  video_url: string;
   user: {
     username: string;
     email: string;
@@ -100,9 +99,9 @@ const ProfileScreen = () => {
               
               <Button
                 onClick={handleLogout}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
               >
-                Log Out
+                Cerrar sesión
               </Button>
             </div>
           </div>

@@ -42,7 +42,6 @@ interface Video {
   publish: string;
   slug: string;
   video: string;
-  video_url: string;
   user: {
     username: string;
   };
