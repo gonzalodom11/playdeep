@@ -21,9 +21,9 @@ const Hero: React.FC = () => {
           <img 
             src="/playdeep-icon.png" 
             alt="PlayDeep Icon"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 h-75 w-auto"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 h-75 w-auto mr-10"
           />
-          <p className="text-xl text-gray-200 mb-8">
+          <p className="text-2xl text-gray-200 mb-8 font-semibold">
           Deep Learning para detectar, analizar y visualizar cada jugada en todo detalle. 
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
