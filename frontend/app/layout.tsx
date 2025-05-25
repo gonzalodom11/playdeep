@@ -19,9 +19,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PlayDeep ML",
-  description: "Play Deep Machine Learning Platform for Football Analytics",
+  title: "PlayDeep",
+  description: "Deep Learning para detectar, analizar y visualizar cada jugada en todo detalle",
+  icons: {
+    icon: [
+      {
+        url: '/playdeep-icon.png',
+        href: '/playdeep-icon.png',
+      }
+    ]
+  }
 };
+
 
 export default function RootLayout({
   children,

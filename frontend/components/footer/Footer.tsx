@@ -8,9 +8,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-football-accent flex items-center justify-center">
-                <span className="text-football-dark font-bold text-lg">PD</span>
-              </div>
+              <div className="w-11 h-11 rounded-full bg-football-accent flex items-center justify-center">
+                <img src="playdeep-icon.png" alt="Football Play Logo" className="h-11 w-auto" />              </div>
               <span className="font-bold text-xl">PlayDeep</span>
             </div>
             <p className="text-gray-300">
