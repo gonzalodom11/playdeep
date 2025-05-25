@@ -80,8 +80,7 @@ def get_sas_upload_url(request, blob_name: str):
     try:
         user_video_count = Video.objects.filter(user=request.user).count()
         if user_video_count >= 4:
-            raise ValidationError("Upload limit reached. You can only upload up to 4 videos in Basic Plan."
-            )
+            raise ValidationError("Upload limit reached. You can only upload up to 4 videos in Basic Plan.")
 
         account_name = config("AZURE_ACCOUNT_NAME")
         container = config("AZURE_CONTAINER")
