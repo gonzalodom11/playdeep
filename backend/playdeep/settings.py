@@ -72,6 +72,9 @@ MIDDLEWARE = [
 CSRF_TRUSTED_ORIGINS = [
     "https://*.railway.app",
     "http://*.railway.app",
+    "https://*.vercel.app",
+    "https://www.playdeep.pro",
+    "https://playdeep.pro",
 ]
 
 ROOT_URLCONF = 'playdeep.urls'
@@ -80,6 +83,29 @@ CORS_ALLOWED_ORIGINS = []
 ENV_CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=str, default="")
 for origin in ENV_CORS_ALLOWED_ORIGINS.split(","):
     CORS_ALLOWED_ORIGINS.append(f"{origin}".strip().lower())
+
+# Allow specific headers that your frontend might send
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Allow specific methods
+CORS_ALLOWED_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 TEMPLATES = [
     {

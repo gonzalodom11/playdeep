@@ -202,12 +202,28 @@ const UploadScreen = () => {
 
 // Función para cargar archivos a Azure
 async function uploadToAzure(file: File, uploadUrl: string) {
-  await axios.put(uploadUrl, file, {
-    headers: {
-      "x-ms-blob-type": "BlockBlob",
-      "Content-Type": file.type,
-    }
-  });
+  try {
+    await axios.put(uploadUrl, file, {
+      headers: {
+        "x-ms-blob-type": "BlockBlob",
+        "Content-Type": file.type,
+      },
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          globalUploadState.progress = progress;
+          // Update local state as well
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('uploadProgress', { detail: progress }));
+          }
+        }
+      },
+      timeout: 300000, // 5 minutes timeout
+    });
+  } catch (error) {
+    console.error('Azure upload error:', error);
+    throw error;
+  }
 }
 
 
