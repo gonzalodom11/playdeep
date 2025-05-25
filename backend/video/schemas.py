@@ -17,7 +17,6 @@ class VideoSchema(Schema):
     video: str  # This will store the file URL as a string
     publish: datetime
     slug: str
-    video_url: str  # This will be set in the API view
     user: UserSchema  # This will be populated with the user data
 
     class Config:
@@ -43,3 +42,8 @@ class VideoCreateSchema(Schema):
         if not self.video:
             raise ValidationError("Video file is required")
         validate_video_file(self.video)
+
+
+class ConfirmUploadSchema(Schema):
+    caption: str
+    uploadUrl: str

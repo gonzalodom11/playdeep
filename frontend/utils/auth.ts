@@ -38,7 +38,7 @@ export const getValidAccessToken = async () => {
     const response = await axios.post(`${apiUrl}token/verify`, {
       token: accessToken
     });
-    console.log("Response: ", response);
+    console.log("Response from token verificaiton: ", response);
     return accessToken;
   } catch (error) {
     // If the token is invalid/expired, try to refresh it

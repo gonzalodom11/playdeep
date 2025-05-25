@@ -66,23 +66,25 @@ const UploadScreen = () => {
 
     try {
       const accessToken = await getValidAccessToken();
-      const formData = new FormData();
-      formData.append('video', file);
-      formData.append('caption', caption);
+      const blobName = `${Date.now()}_${file.name}`; // Nombre único para el blob
 
-      await axios.post(`${apiUrl}videos/upload`, formData, {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total!);
-          globalUploadState.progress = percentCompleted;
-          setUploadProgress(percentCompleted);
-        },
-        timeout: 300000, // 5 minutes timeout
-        signal: controller.signal,
-      });
+      // Solicita la URL SAS al backend
+      const sasRes = await axios.post(
+        `${apiUrl}videos/sas-upload-url?blob_name=${encodeURIComponent(blobName)}`,
+        {},
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      const uploadUrl = sasRes.data.upload_url;
+
+      // Upload to Azure
+      await uploadToAzure(file, uploadUrl);
+
+      // Confirm upload
+      await axios.post(
+        `${apiUrl}videos/confirm-upload`,
+        { caption: caption, uploadUrl: uploadUrl },
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
 
       toast({
         title: "Success",
@@ -99,7 +101,8 @@ const UploadScreen = () => {
         const axiosError = error as { code?: string; response?: { data?: { detail?: string } } };
         let errorMessage = "Failed to upload video. Please try again.";
         if (axiosError.code === 'ECONNABORTED') {
-          errorMessage = "Upload timed out. Please try again with a smaller file or check your internet connection.";
+          errorMessage = 
+          "Upload timed out. Please try again with a smaller file or check your internet connection.";
         } else if (axiosError.response?.data?.detail) {
           errorMessage = axiosError.response.data.detail;
         }
@@ -197,4 +200,15 @@ const UploadScreen = () => {
   );
 };
 
-export default UploadScreen; 
+// Función para cargar archivos a Azure
+async function uploadToAzure(file: File, uploadUrl: string) {
+  await axios.put(uploadUrl, file, {
+    headers: {
+      "x-ms-blob-type": "BlockBlob",
+      "Content-Type": file.type,
+    }
+  });
+}
+
+
+export default UploadScreen;
