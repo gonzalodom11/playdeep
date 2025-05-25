@@ -5,8 +5,8 @@ import "../index.css";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/header/Navbar";
 import {ClientQueryProvider} from "@/providers/client-query-provider";
-import { ToastProvider, ToastViewport } from "@/components/ui/toast"; // Import toast components
-
+import { ToastProvider } from "@/components/ui/toast"; // Import toast components
+import { Toaster } from "@/components/ui/Toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +39,7 @@ export default function RootLayout({
             <Footer />
           </div>
           </ClientQueryProvider>
-          <ToastViewport /> 
+          <Toaster />
         </ToastProvider>
         
 
@@ -47,4 +47,3 @@ export default function RootLayout({
     </html>
   );
 }
-  

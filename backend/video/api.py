@@ -67,7 +67,7 @@ def get_video(request, slug: str, year: int, month: int, day: int):
 @router.get("{year}/{month}/{day}/{slug}/detect-players")
 def detect_players(request, year: int, month: int, day: int, slug: str, frame: int):
     from .views import object_detection 
-    return object_detection(request, year, month, day, slug, frame)
+    return object_detection(request, year, month, day, day, slug, frame)
 
 @router.get("user/{username}", response=List[VideoSchema])
 def list_user_videos(request, username: str):
@@ -76,17 +76,27 @@ def list_user_videos(request, username: str):
 
 @router.post("videos/sas-upload-url", auth=JWTAuth())
 def get_sas_upload_url(request, blob_name: str):
-    account_name = config("AZURE_ACCOUNT_NAME")
-    container = config("AZURE_CONTAINER")
-    sas_token = config("AZURE_SAS_TOKEN")  # Get the static SAS token from .env
+    # Check if the user has reached the upload limit
+    try:
+        user_video_count = Video.objects.filter(user=request.user).count()
+        if user_video_count >= 4:
+            raise ValidationError("Upload limit reached. You can only upload up to 4 videos in Basic Plan."
+            )
 
-    # Ensure publish date is set (default=timezone.now takes care of this on create)
-    # Construct the target path using the publish date and blob_name
-    publish_date = datetime.now()
-    # Format the date as YY/MM/DD
-    date_path = publish_date.strftime('%y/%m/%d')
-    url = f"https://{account_name}.blob.core.windows.net/{container}/{date_path}/{blob_name}?{sas_token}"
-    return {"upload_url": url}
+        account_name = config("AZURE_ACCOUNT_NAME")
+        container = config("AZURE_CONTAINER")
+        sas_token = config("AZURE_SAS_TOKEN")  # Get the static SAS token from .env
+
+        # Ensure publish date is set (default=timezone.now takes care of this on create)
+        # Construct the target path using the publish date and blob_name
+        publish_date = datetime.now()
+        # Format the date as YY/MM/DD
+        date_path = publish_date.strftime('%y/%m/%d')
+        url = f"https://{account_name}.blob.core.windows.net/{container}/{date_path}/{blob_name}?{sas_token}"
+        return {"upload_url": url}
+    except ValidationError as e:
+        print(f"Validation error in SAS upload URL: {str(e)}")
+        raise
 
 @router.post("videos/confirm-upload", auth=JWTAuth(), response=VideoSchema)
 def confirm_upload(request, payload: ConfirmUploadSchema):

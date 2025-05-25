@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const handleAuthChange = (e: Event) => {
+  const handleAuthChange = () => {
     const token = localStorage.getItem('accessToken');
     setAccessToken(token);
     setIsLoggedIn(!!token);
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
               onClick={handleProfileClick}
               className="bg-football-accent hover:bg-football-accent/90 text-football-dark"
             >
-              <span className="hidden md:inline">Perfil</span>
+              <span className="hidden md:inline font-bold">Perfil</span>
             </Button>
         </div>
       </div>

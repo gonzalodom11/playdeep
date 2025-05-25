@@ -226,7 +226,8 @@ const AuthScreen = () => {
                     htmlFor="terms"
                     className="text-sm font-medium text-gray-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                    I agree to the <a href="#" className="text-football-accent hover:text-football-accent/80">Terms of Service</a>
+                    Estoy de acuerdo con los <a href="/termsService" className="text-football-accent hover:text-football-accent/80" target="_blank" rel="noopener noreferrer">
+                    Términos de Servicio</a>
                   </label>
                 </div>
               </CardContent>
@@ -248,4 +249,4 @@ const AuthScreen = () => {
   );
 };
 
-export default AuthScreen; 
+export default AuthScreen;
