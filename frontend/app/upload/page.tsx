@@ -219,9 +219,21 @@ async function uploadToAzure(file: File, uploadUrl: string) {
         }
       },
       timeout: 300000, // 5 minutes timeout
+      transformRequest: [(data) => data], // Pass file as-is
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Azure upload error:', error);
+    
+    // Provide more specific error messages
+    const axiosError = error as { code?: string; message?: string; response?: { status?: number } };
+    if (axiosError.code === 'ERR_NETWORK' || axiosError.message?.includes('CORS')) {
+      throw new Error('CORS error: Azure Blob Storage is not configured to allow uploads from this domain. Please configure CORS settings in your Azure Storage account.');
+    } else if (axiosError.response?.status === 403) {
+      throw new Error('Access denied: The SAS token may be invalid or expired.');
+    } else if (axiosError.response?.status === 404) {
+      throw new Error('Storage container not found. Please check your Azure configuration.');
+    }
+    
     throw error;
   }
 }

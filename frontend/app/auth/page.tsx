@@ -36,8 +36,8 @@ const AuthScreen = () => {
 
       if (response.data) {
         toast({
-          title: "Logged in successfully",
-          description: "Welcome back to Game Vision",
+          title: "Iniciado sesión correctamente",
+          description: "Bienvenido de nuevo a Playdeep",
         });
         const accessToken = response.data.access;
         const refreshToken = response.data.refresh;
@@ -48,7 +48,7 @@ const AuthScreen = () => {
         router.push('/profile'); // Redirect to profile screen
       } else {
         toast({
-          title: "Login failed",
+          title: "Inicio de sesión fallido",
           description: response.data.message,
         });
       }
@@ -56,7 +56,7 @@ const AuthScreen = () => {
       console.error(error);
       toast({
         title: "Error",
-        description: "An error occurred during login",
+        description: "Un error ocurrió durante el inicio de sesión",
       });
     } finally {
       setIsLoading(false);
@@ -78,12 +78,12 @@ const AuthScreen = () => {
 
       if (response.data.success) {
         toast({
-          title: "Registered successfully",
-          description: "Welcome to Game Vision",
+          title: "Registro completado correctamente",
+          description: "Bienvenido a Playdeep",
         });
       } else {
         toast({
-          title: "Register failed",
+          title: "El registro falló",
           description: response.data.message,
         });
       }
@@ -91,7 +91,7 @@ const AuthScreen = () => {
       console.error(error);
       toast({
         title: "Error",
-        description: "An error occurred during register",
+        description: "Un error ocurrió durante el registro",
       });
     } finally {
       setIsLoading(false);

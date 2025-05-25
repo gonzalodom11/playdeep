@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Producto</h4>
             <ul className="space-y-2">
               <li><Link href="/#features" className="text-gray-300 hover:text-football-accent">Características</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Monetización</a></li>
+              <li><Link href="/pricing" className="text-gray-300 hover:text-football-accent">Monetización</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
                {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>*/}
             </ul>
