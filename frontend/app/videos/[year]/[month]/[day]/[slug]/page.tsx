@@ -79,10 +79,10 @@ const VideoDetail = () => {
             </label>
             {video && <Button 
                   onClick={handleDetectPlayer}
-                  className="w-full bg-primary hover:bg-primary/90"
+                  className="bg-football-accent mt-2 hover:bg-football-accent/90 text-football-dark text-lg"
                 >
                   <Camera className="mr-2" />
-                  Detect Players
+                  Detectar jugadores
                 </Button>}
           </div>
         </Card>
