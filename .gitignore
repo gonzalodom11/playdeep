@@ -64,3 +64,5 @@ coverage/
 
 # Videos
 *.mp4
+
+.cursor/

@@ -55,7 +55,7 @@ const VideoDetail = () => {
           <video
             src={video.video}
             controls
-            className="w-full h-full object-cover rounded-xl mb-3"
+            className="w-full h-full object-cover mb-3"
           /> 
           </div>
     {/* Bottom info section */}
@@ -79,10 +79,10 @@ const VideoDetail = () => {
             </label>
             {video && <Button 
                   onClick={handleDetectPlayer}
-                  className="w-full bg-primary hover:bg-primary/90"
+                  className="bg-football-accent mt-2 hover:bg-football-accent/90 text-football-dark text-lg"
                 >
                   <Camera className="mr-2" />
-                  Detect Players
+                  Detectar jugadores
                 </Button>}
           </div>
         </Card>

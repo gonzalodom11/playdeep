@@ -72,6 +72,9 @@ MIDDLEWARE = [
 CSRF_TRUSTED_ORIGINS = [
     "https://*.railway.app",
     "http://*.railway.app",
+    "https://*.vercel.app",
+    "https://www.playdeep.pro",
+    "https://playdeep.pro",
 ]
 
 ROOT_URLCONF = 'playdeep.urls'
@@ -80,6 +83,29 @@ CORS_ALLOWED_ORIGINS = []
 ENV_CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=str, default="")
 for origin in ENV_CORS_ALLOWED_ORIGINS.split(","):
     CORS_ALLOWED_ORIGINS.append(f"{origin}".strip().lower())
+
+# Allow specific headers that your frontend might send
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Allow specific methods
+CORS_ALLOWED_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 TEMPLATES = [
     {
@@ -110,6 +136,9 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
+        'OPTIONS': {
+            'sslmode': 'require',  # forces encrypted connection
+        },
     },
     'extra': {
        'ENGINE': 'django.db.backends.sqlite3',
@@ -169,3 +198,9 @@ NINJA_JWT = {
 
 # Azure Storage settings
 DEFAULT_FILE_STORAGE = 'video.storage_backends.AzureMediaStorage'
+AZURE_UPLOAD_CHUNK_SIZE = 4 * 1024 * 1024  # 4MB
+
+# Increase the maximum file upload size to 100MB (or whatever size you need)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes
+FILE_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes
+
