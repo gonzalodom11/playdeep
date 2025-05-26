@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Play } from 'lucide-react';
 import Link from 'next/link';
 
 
@@ -19,17 +18,22 @@ const Hero: React.FC = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
             PlayDeep          
           </h1>
-          <p className="text-xl text-gray-200 mb-8">
+          <img 
+            src="/playdeep-icon.png" 
+            alt="PlayDeep Icon"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 h-75 w-auto mr-10"
+          />
+          <p className="text-2xl text-gray-200 mb-8 font-semibold">
           Deep Learning para detectar, analizar y visualizar cada jugada en todo detalle. 
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button size="lg" className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg">
               <Link href={"/videos"}>Ver Videos</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
+            {/* <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 flex items-center">
               <Play size={16} className="mr-2" />
               Datos de Videos
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

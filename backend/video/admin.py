@@ -5,8 +5,8 @@ from .models import Video
 
 @admin.register(Video)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['caption', 'slug', 'video', 'publish']
-    list_filter = ['publish']
+    list_display = ['caption', 'slug', 'video', 'publish', 'user']
+    list_filter = ['publish', 'user']
     search_fields = ['caption']
     prepopulated_fields = {'slug': ('caption',)}
     date_hierarchy = 'publish'

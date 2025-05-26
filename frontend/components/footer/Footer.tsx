@@ -8,9 +8,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-football-accent flex items-center justify-center">
-                <span className="text-football-dark font-bold text-lg">PD</span>
-              </div>
+              <div className="w-11 h-11 rounded-full bg-football-accent flex items-center justify-center">
+                <img src="/playdeep-icon.png" alt="Football Play Logo" className="h-11 w-auto" />              </div>
               <span className="font-bold text-xl">PlayDeep</span>
             </div>
             <p className="text-gray-300">
@@ -19,12 +18,12 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="col-span-1">
-            <h4 className="font-semibold text-lg mb-4">Product</h4>
+            <h4 className="font-semibold text-lg mb-4">Producto</h4>
             <ul className="space-y-2">
               <li><Link href="/#features" className="text-gray-300 hover:text-football-accent">Características</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Monetización</a></li>
+              <li><Link href="/pricing" className="text-gray-300 hover:text-football-accent">Monetización</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>
+               {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>*/}
             </ul>
           </div>
           
@@ -33,7 +32,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Documentación</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Tutoriales</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Blog</a></li>
+              {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Blog</a></li>*/}
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Support</a></li>
             </ul>
           </div>
@@ -42,9 +41,9 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Equipo</h4>
             <ul className="space-y-2">
               <li><a href="https://gonzalodom11.github.io/" className="text-gray-300 hover:text-football-accent">Acerca del autor</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Trabajos</a></li>
+              {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Trabajos</a></li>*/}
               <li><a href="https://www.linkedin.com/in/gonzalodm9/" className="text-gray-300 hover:text-football-accent">Contacto</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Política de privacidad</a></li>
+              <li><Link href="/privacyPolicy" className="text-gray-300 hover:text-football-accent">Política de privacidad</Link></li>
             </ul>
           </div>
         </div>

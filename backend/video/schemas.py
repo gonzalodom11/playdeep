@@ -2,6 +2,7 @@ from ninja import Schema
 from datetime import datetime
 from django.core.files.uploadedfile import UploadedFile
 from django.core.exceptions import ValidationError
+from playdeep.schemas import UserSchema  # Updated import path
 
 
 # Custom function to validate file type
@@ -16,7 +17,7 @@ class VideoSchema(Schema):
     video: str  # This will store the file URL as a string
     publish: datetime
     slug: str
-    video_url: str  # This will be set in the API view
+    user: UserSchema  # This will be populated with the user data
 
     class Config:
         from_attributes = True  # Allows conversion from Django model instances
@@ -27,8 +28,22 @@ class VideoCreateSchema(Schema):
     caption: str
 
     class Config:
-        arbitrary_types_allowed = True  # Allow arbitrary types like UploadedFile
+        arbitrary_types_allowed = True
 
+    @staticmethod
+    def resolve_video(obj):
+        return obj.get('video')
+
+    @staticmethod
+    def resolve_caption(obj):
+        return obj.get('caption')
 
     def validate(self):
+        if not self.video:
+            raise ValidationError("Video file is required")
         validate_video_file(self.video)
+
+
+class ConfirmUploadSchema(Schema):
+    caption: str
+    uploadUrl: str

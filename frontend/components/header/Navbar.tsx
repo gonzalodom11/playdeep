@@ -1,21 +1,84 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Search, User } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
+import { getValidAccessToken } from '@/utils/auth';
+import { useRouter } from 'next/navigation';
 
 const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  const handleStorageChange = (e: StorageEvent) => {
+    if (e.key === 'accessToken') {
+      setAccessToken(e.newValue);
+      setIsLoggedIn(!!e.newValue);
+    }
+  };
+
+  const handleAuthChange = () => {
+    const token = localStorage.getItem('accessToken');
+    setAccessToken(token);
+    setIsLoggedIn(!!token);
+  };
+
+  // Update accessToken when localStorage changes
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        await getValidAccessToken();
+        setIsLoggedIn(true);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+
+    // Initial check
+    checkAuth();
+    
+    // Add storage event listener
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Add custom event listener for auth changes
+    window.addEventListener('authStateChange', handleAuthChange);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('authStateChange', handleAuthChange);
+    };
+  }, [accessToken]);
+
+  const handleProfileClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      await getValidAccessToken();
+      router.push('/profile');
+    } catch {
+      setIsLoggedIn(false);
+      router.push('/auth');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    setAccessToken(null);
+    setIsLoggedIn(false);
+    router.push('/auth');
+  };
   
   return (
     <header className="fixed top-0 left-0 right-0 bg-football-dark/80 backdrop-blur-md z-50 border-b border-football-medium">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full bg-football-accent flex items-center justify-center">
-              <span className="text-football-dark font-bold text-lg">PD</span>
+            <div className="w-11 h-11 flex items-center justify-center">
+              <img src="/playdeep-icon.png" alt="Football Play Logo" className="h-11 w-auto" />
             </div>
             {!isMobile && (
               <span className="font-bold text-xl text-white">PlayDeep</span>
@@ -25,19 +88,33 @@ const Navbar: React.FC = () => {
         
         <nav className="hidden md:flex items-center space-x-8">
           <Link href="/#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</Link>
-          <a href="#demo" className="text-gray-300 hover:text-football-accent transition-colors">Demo</a>
           <Link href="/videos" className="text-gray-300 hover:text-football-accent transition-colors">Videos</Link>
+          {isLoggedIn && (
+            <Link href="/upload" className="text-gray-300 hover:text-football-accent transition-colors">Upload</Link>
+          )}
         </nav>
         
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-football-medium dark:text-gray-300">
-            <Search size={20} />
-          </Button>
-          <Button variant="outline" className="hidden md:flex">Sign In</Button>
-          <Button className="bg-football-accent hover:bg-football-accent/90 text-football-dark">
-            <span className="hidden md:inline">Comenzar</span>
-            <User size={18} className="md:hidden" />
-          </Button>
+            {!isLoggedIn ? (
+              <Link href="/auth">
+                <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
+              </Link>
+            ) : (
+              <Button 
+                onClick={handleLogout}
+                variant="outline" 
+                className="hidden md:flex"
+              >
+                Cerrar sesión
+              </Button>
+            )}
+          
+            <Button 
+              onClick={handleProfileClick}
+              className="bg-football-accent hover:bg-football-accent/90 text-football-dark"
+            >
+              <span className="hidden md:inline font-bold">Perfil</span>
+            </Button>
         </div>
       </div>
     </header>
