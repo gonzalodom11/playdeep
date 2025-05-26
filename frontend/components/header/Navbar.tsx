@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-11 h-11 flex items-center justify-center">
-              <img src="playdeep-icon.png" alt="Football Play Logo" className="h-11 w-auto" />
+              <img src="/playdeep-icon.png" alt="Football Play Logo" className="h-11 w-auto" />
             </div>
             {!isMobile && (
               <span className="font-bold text-xl text-white">PlayDeep</span>
