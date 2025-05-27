@@ -1,6 +1,6 @@
 # PlayDeep
 
-PlayDeep es una aplicación web que permite a los usuarios subir y analizar videos de fútbol. Esta aplicación tiene un enfoque simple, fácil de usar y está construida con Django, Bootstrap 5 y Python.
+PlayDeep es una aplicación web que permite a los usuarios subir y analizar videos de fútbol. Esta aplicación tiene un enfoque simple, fácil de usar y está construida con Django, Next.js y desplegada en Vercel.
 
 
 ## Tabla de Contenidos
@@ -21,8 +21,8 @@ PlayDeep es una aplicación web que permite a los usuarios subir y analizar vide
 ## Tecnologías utilizadas
 
 - **Backend**: Django 3.x
-- **Frontend**: HTML, CSS, Bootstrap 5
-- **Base de datos**: Postgresql
+- **Frontend**: TypeScript, Next.js, Tailwind CSS
+- **Base de datos**: Postgresql, Azure Blob Storage
 - **Python**: 3.x
 - **Dependencias**:
   - `timm`
