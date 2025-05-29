@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
 import { getValidAccessToken } from '@/utils/auth';
 import { useRouter } from 'next/navigation';
+import { Users } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const isMobile = useIsMobile();
@@ -86,24 +87,31 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
         
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/#features" className="text-gray-300 hover:text-football-accent transition-colors">Características</Link>
+        {!isMobile && <nav className="hidden md:flex items-center space-x-20 text-base font-bold">
+          <Link href="/#features" className="text-gray-300 hover:text-green-500 transition-colors">Características</Link>
+          <Link href="/videos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">Videos</Link>
+          {isLoggedIn && (
+            <Link href="/upload" className="text-gray-300 hover:text-green-500 transition-colors">Upload</Link>
+          )}
+        </nav>}
+
+        {isMobile && <nav className="sm:flex items-center space-x-12 font-bold">
           <Link href="/videos" className="text-gray-300 hover:text-football-accent transition-colors">Videos</Link>
           {isLoggedIn && (
             <Link href="/upload" className="text-gray-300 hover:text-football-accent transition-colors">Upload</Link>
           )}
-        </nav>
+        </nav>}
         
-        <div className="flex items-center space-x-2">
+        <div className="flex sm:items-center space-x-2  md:space-x-4 lg:space-x-4 2xl:space-x-8">
             {!isLoggedIn ? (
               <Link href="/auth">
-                <Button variant="outline" className="hidden md:flex">Iniciar sesión</Button>
+                <Button variant="outline" className="hidden sm:flex text-sm">Iniciar sesión</Button>
               </Link>
             ) : (
               <Button 
                 onClick={handleLogout}
                 variant="outline" 
-                className="hidden md:flex"
+                className="hidden sm:flex text-sm"
               >
                 Cerrar sesión
               </Button>
@@ -111,8 +119,9 @@ const Navbar: React.FC = () => {
           
             <Button 
               onClick={handleProfileClick}
-              className="bg-football-accent hover:bg-football-accent/90 text-football-dark"
+              className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-sm px-4 py-2"
             >
+              <Users className="sm:font-bold lg:mr-2"></Users>
               <span className="hidden md:inline font-bold">Perfil</span>
             </Button>
         </div>
