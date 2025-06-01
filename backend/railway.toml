@@ -5,6 +5,6 @@ watchPatterns = [
     "requirements.txt",
     "railway.toml",
     "Dockerfile",
-    "playdeep/**"
+    "playdeep/**",
     "app/**"
 ]
