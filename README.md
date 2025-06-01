@@ -15,7 +15,7 @@ PlayDeep es una aplicación web que permite a los usuarios subir y analizar vide
 
 - **Subir videos**: Los usuarios pueden subir videos relacionados con partidos de fútbol o contenido similar.
 - **Ver videos**: Los usuarios pueden ver los videos subidos.
-- **Interfaz limpia y sencilla**: Utiliza Bootstrap 5 para un diseño responsive y moderno.
+- **Interfaz limpia y sencilla**: Utiliza Tailwind CSS y TypeScript para un diseño responsive y moderno.
 - **Gestión de videos**: Los videos subidos pueden ser procesados y organizados para facilitar la visualización.
 
 ## Tecnologías utilizadas
