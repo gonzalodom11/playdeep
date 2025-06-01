@@ -5,6 +5,7 @@ import { Camera} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import useSWR from 'swr';
 import { useParams } from 'next/navigation'
+import Image from 'next/image';
 
 
 // get requests to the Django API
@@ -33,7 +34,18 @@ const VideoDetail = () => {
     
   }, [frameNumber]);
 
-  if (isLoading)  return <div className="text-white">Loading...</div>;
+  if (isLoading) return (
+    <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-[400px]">
+      <Image 
+        src="/blocks-shuffle-4.svg" 
+        alt="Loading..." 
+        width={80} 
+        height={80} 
+        className="mb-4"
+      />
+      <div className="text-white text-lg">Loading video...</div>
+    </div>
+  );
   if (error) return <div className="text-white">Error loading video</div>;
   
   
@@ -59,27 +71,30 @@ const VideoDetail = () => {
           /> 
           </div>
     {/* Bottom info section */}
-          <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
+          <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white space-y-4">
             <h1 className="flex items-center text-lg z-10 font-semibold">{video.caption}</h1>
             <label className="text-white mb-2">
-              Frame Number:
-              <input 
-                type="number"
-                className="ml-2 p-1 rounded text-black bg-white"
-                value={outputFrame ?? ""}
-                min={0}
-                onChange={(e) => {
-                  setDetectedPress(false); // reset automatically after loading
-                  const value = e.target.value;
-                  setFrameNumber(value == '' ? 1 : parseInt(e.target.value))
-                  setOutputFrame(value)}
-                  
-                }
-              />
+              <div className="flex items-center space-x-2">
+                <span>Frame Number:</span>
+                <input 
+                  type="number"
+                  className="p-1 rounded text-black bg-white"
+                  value={outputFrame ?? ""}
+                  min={0}
+                  onChange={(e) => {
+                    setDetectedPress(false); // reset automatically after loading
+                    const value = e.target.value;
+                    setFrameNumber(value === '' ? 1 : parseInt(value));
+                    setOutputFrame(value);
+                  }}
+                />
+                <span className="text-sm text-gray-300">(Frame 30 = 1 s)</span>
+              </div>
             </label>
+            
             {video && <Button 
                   onClick={handleDetectPlayer}
-                  className="bg-football-accent mt-2 hover:bg-football-accent/90 text-football-dark text-lg"
+                  className="bg-football-accent mx-auto mt-2 w-fit px-4 hover:bg-football-accent/90 text-football-dark text-lg"
                 >
                   <Camera className="mr-2" />
                   Detectar jugadores
@@ -88,8 +103,15 @@ const VideoDetail = () => {
         </Card>
         {!detectPlayer && detectedPress && (
             <Card className="video-detail">
-              <div className="aspect-video relative">
-                Loading detected players image...
+              <div className="aspect-video relative flex flex-col items-center justify-center">
+                <Image 
+                  src="/blocks-shuffle-4.svg" 
+                  alt="Loading..." 
+                  width={60} 
+                  height={60} 
+                  className="mb-4"
+                />
+                <div className="text-white">Loading detected players image...</div>
               </div>
             </Card>
           )}
