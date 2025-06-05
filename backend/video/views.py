@@ -12,6 +12,9 @@ import cv2
 from PIL import Image
 import io
 import warnings
+import supervision as sv
+from tqdm import tqdm
+from sports.common.team import TeamClassifier
 
 
 myDownloader = SoccerNetDownloader(LocalDirectory="./SoccernetData/")
@@ -20,6 +23,7 @@ os.environ["ONNXRUNTIME_EXECUTION_PROVIDERS"] = "[CPUExecutionProvider]"
 # Suppress only 'ModelDependencyMissing' warnings
 warnings.filterwarnings("ignore", category=UserWarning, message="ModelDependencyMissing.*")
 warnings.filterwarnings("ignore", message="Specified provider '.*' is not in available provider names")
+
 
 
 def index(request):
@@ -143,5 +147,33 @@ def object_detection(request, year, month, day, slug, frame_selected):
 
 
 
+def player_classification():
+    SOURCE_VIDEO_PATH = r"C:\Users\User\Videos\PSG 4-2 MAN CITY  UEFA Champions League.mp4"
+    PLAYER_ID = 2
+    STRIDE = 30
 
+    try:
+        ROBOFLOW_API_KEY = config('ROBOFLOW_API_KEY')
+        # Initialize Roboflow
+        rf = Roboflow(api_key=ROBOFLOW_API_KEY)
+        # Load the model
+        PLAYER_DETECTION_MODEL = rf.workspace().project("football-players-detection-3zvbc").version(11).model
+    except Exception as e:
+        return HttpResponse(f"Error: Environment key missing", status=500)
 
+    frame_generator = sv.get_video_frames_generator(
+        source_path=SOURCE_VIDEO_PATH, stride=STRIDE)
+
+    # result_list = PLAYER_DETECTION_MODEL.predict(frame_res, confidence=0.3)
+
+    crops = []
+    for frame in tqdm(frame_generator, desc='collecting crops'):
+        result = PLAYER_DETECTION_MODEL.predict(frame, confidence=0.3)[0]
+        detections = sv.Detections.from_inference(result)
+        players_detections = detections[detections.class_id == PLAYER_ID]
+        players_crops = [sv.crop_image(frame, xyxy) for xyxy in detections.xyxy]
+        crops += players_crops
+
+    team_classifier = TeamClassifier()
+    team_classifier.fit(crops)
+    return team_classifier
