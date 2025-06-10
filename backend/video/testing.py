@@ -183,7 +183,6 @@ def radar_view_visualization():
         rf = Roboflow(api_key=ROBOFLOW_API_KEY)
         # Load the model
         PLAYER_DETECTION_MODEL = rf.workspace().project("football-players-detection-3zvbc").version(11).model
-        FIELD_DETECTION_MODEL = rf.workspace().project("football-field-detection-f07vi").version(15).model
         team_classifier = player_classification(PLAYER_DETECTION_MODEL)
     except Exception as e:
         return HttpResponse(f"Error: {e}", status=500)
@@ -270,83 +269,9 @@ def radar_view_visualization():
         scene=annotated_frame,
         detections=ball_detections)
 
-    # sv.plot_image(annotated_frame)
-
-    with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp:
-        temp_path = tmp.name
-        cv2.imwrite(temp_path, frame)
-
-    # detect pitch key points
-    result_field_list = FIELD_DETECTION_MODEL.predict(temp_path)
-
-    # Save to a text file
-    with open("field_detection_result.txt", "w") as f:
-        f.write(str(result_field_list))
-
-    # result_list is a list of detections
-    prediction_json = {
-        "image": {
-            "width": frame.shape[1],
-            "height": frame.shape[0],
-        },
-        "predictions": [result.json() for result in result_field_list]  # Loop through ALL predictions
-    }
-
-    key_points = sv.KeyPoints.from_inference(prediction_json)
-
-    # project ball, players and referies on pitch
-
-    filter = key_points.confidence[0] > 0.5
-    frame_reference_points = key_points.xy[0][filter]
-    pitch_reference_points = np.array(CONFIG.vertices)[filter]
-
-    transformer = ViewTransformer(
-        source=frame_reference_points,
-        target=pitch_reference_points
-    )
-
-    frame_ball_xy = ball_detections.get_anchors_coordinates(sv.Position.BOTTOM_CENTER)
-    pitch_ball_xy = transformer.transform_points(points=frame_ball_xy)
-
-    players_xy = players_detections.get_anchors_coordinates(sv.Position.BOTTOM_CENTER)
-    pitch_players_xy = transformer.transform_points(points=players_xy)
-
-    referees_xy = referees_detections.get_anchors_coordinates(sv.Position.BOTTOM_CENTER)
-    pitch_referees_xy = transformer.transform_points(points=referees_xy)
-
-    # visualize video game-style radar view
-
-    annotated_frame = draw_pitch(CONFIG)
-    annotated_frame = draw_points_on_pitch(
-        config=CONFIG,
-        xy=pitch_ball_xy,
-        face_color=sv.Color.WHITE,
-        edge_color=sv.Color.BLACK,
-        radius=10,
-        pitch=annotated_frame)
-    annotated_frame = draw_points_on_pitch(
-        config=CONFIG,
-        xy=pitch_players_xy[players_detections.class_id == 0],
-        face_color=sv.Color.from_hex('00BFFF'),
-        edge_color=sv.Color.BLACK,
-        radius=16,
-        pitch=annotated_frame)
-    annotated_frame = draw_points_on_pitch(
-        config=CONFIG,
-        xy=pitch_players_xy[players_detections.class_id == 1],
-        face_color=sv.Color.from_hex('FF1493'),
-        edge_color=sv.Color.BLACK,
-        radius=16,
-        pitch=annotated_frame)
-    annotated_frame = draw_points_on_pitch(
-        config=CONFIG,
-        xy=pitch_referees_xy,
-        face_color=sv.Color.from_hex('FFD700'),
-        edge_color=sv.Color.BLACK,
-        radius=16,
-        pitch=annotated_frame)
-
     sv.plot_image(annotated_frame)
+
+    
 
 
 radar_view_visualization()

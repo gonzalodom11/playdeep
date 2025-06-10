@@ -1,6 +1,7 @@
 from typing import List
 from ninja import Router
 from ninja_jwt.authentication import JWTAuth
+from .views import object_detection, analyze_with_llm, analyze_frame_with_ai
 from .models import Video  # Import the Video model
 from django.shortcuts import get_object_or_404  # Import get_object_or_404
 from .schemas import VideoSchema, VideoCreateSchema, ConfirmUploadSchema  # Import the schemas
@@ -66,8 +67,12 @@ def get_video(request, slug: str, year: int, month: int, day: int):
 
 @router.get("{year}/{month}/{day}/{slug}/detect-players")
 def detect_players(request, year: int, month: int, day: int, slug: str, frame: int):
-    from .views import object_detection 
+    
     return object_detection(request, year, month, day, slug, frame)
+
+@router.post("{year}/{month}/{day}/{slug}/analyze-llm")
+def analyze_llm(request):
+    return analyze_frame_with_ai(request)
 
 @router.get("user/{username}", response=List[VideoSchema])
 def list_user_videos(request, username: str):
