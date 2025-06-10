@@ -10,5 +10,5 @@ urlpatterns = [
         views.video_detail,
         name='video_detail'),
     path('<int:year>/<int:month>/<int:day>/<slug:video>/analyze/', views.object_detection, name='object_detection'),
-
+    path('analyze-frame/', views.analyze_frame_with_ai, name='analyze_frame_with_ai'),
 ]
