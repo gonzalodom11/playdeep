@@ -1,6 +1,11 @@
 import os
-from django.http import HttpResponse
+import json
+import base64
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.utils.decorators import method_decorator
 from .models import Video
 from .forms import Video_form
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -13,8 +18,8 @@ from PIL import Image
 import io
 import warnings
 import supervision as sv
-from tqdm import tqdm
-from sports.common.team import TeamClassifier
+from openai import OpenAI
+from ultralytics import YOLO 
 
 
 myDownloader = SoccerNetDownloader(LocalDirectory="./SoccernetData/")
@@ -146,34 +151,125 @@ def object_detection(request, year, month, day, slug, frame_selected):
     return HttpResponse(buffer.getvalue(), content_type="image/png")
 
 
+def analyze_with_llm(request, year, month, day, slug, frame_selected):
+    
+    client = OpenAI(api_key=config('OPENAI_API_KEY'))
 
-def player_classification():
-    SOURCE_VIDEO_PATH = r"C:\Users\User\Videos\PSG 4-2 MAN CITY  UEFA Champions League.mp4"
-    PLAYER_ID = 2
-    STRIDE = 30
+    video = get_object_or_404(
+        Video,
+        slug=slug,
+        publish__year=year,
+        publish__month=month,
+        publish__day=day
+    )
 
+    frame_generator = sv.get_video_frames_generator(video.video.url)
+
+    # Select the 10th frame (index 9, as indexing starts from 0)
+    for _ in range(frame_selected):
+        frame_res = next(frame_generator)
+
+    
+
+
+
+
+def analyze_video(request, year, month, day, slug, frame_selected):
+    video = get_object_or_404(
+        Video,
+        slug=slug,
+        publish__year=year,
+        publish__month=month,
+        publish__day=day
+        )
+    
+    model = YOLO('models/best.pt')
+    results = model.predict(r"C:\Users\User\Videos\Barcelona Villareal La Liga 2025.mp4", save=True)
+
+
+def analyze_frame_with_ai(request):
+    """
+    Vista para analizar frames de video usando OpenAI GPT-4o
+    Recibe una imagen en base64 y un prompt, devuelve el análisis de la IA
+    """
     try:
-        ROBOFLOW_API_KEY = config('ROBOFLOW_API_KEY')
-        # Initialize Roboflow
-        rf = Roboflow(api_key=ROBOFLOW_API_KEY)
-        # Load the model
-        PLAYER_DETECTION_MODEL = rf.workspace().project("football-players-detection-3zvbc").version(11).model
+        # Parsear el JSON del request
+        data = json.loads(request.body)
+        
+        # Validar que los datos requeridos están presentes
+        if 'image' not in data or 'prompt' not in data:
+            return JsonResponse({
+                'error': 'Missing required fields: image and prompt'
+            }, status=400)
+        
+        image_base64 = data['image']
+        user_prompt = data['prompt']
+        
+        # Validar que el prompt no esté vacío
+        if not user_prompt.strip():
+            return JsonResponse({
+                'error': 'Prompt cannot be empty'
+            }, status=400)
+        
+        # Validar el formato de la imagen base64
+        if not image_base64.startswith('data:image/'):
+            return JsonResponse({
+                'error': 'Invalid image format. Expected base64 data URL'
+            }, status=400)
+        
+        # Inicializar cliente de OpenAI
+        try:
+            client = OpenAI(api_key=config('OPENAI_API_KEY'))
+        except Exception as e:
+            return JsonResponse({
+                'error': 'OpenAI API key not configured'
+            }, status=500)
+        
+        # Llamar a la API de OpenAI GPT-4o
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": user_prompt
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": image_base64
+                                }
+                            }
+                        ]
+                    }
+                ],
+                max_tokens=1000,
+                temperature=0.7
+            )
+            
+            # Extraer la respuesta
+            ai_response = response.choices[0].message.content
+            
+            return JsonResponse({
+                'success': True,
+                'analysis': ai_response,
+                'prompt_used': user_prompt
+            })
+            
+        except Exception as openai_error:
+            return JsonResponse({
+                'error': f'OpenAI API error: {str(openai_error)}'
+            }, status=500)
+            
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'error': 'Invalid JSON format'
+        }, status=400)
     except Exception as e:
-        return HttpResponse(f"Error: Environment key missing", status=500)
-
-    frame_generator = sv.get_video_frames_generator(
-        source_path=SOURCE_VIDEO_PATH, stride=STRIDE)
-
-    # result_list = PLAYER_DETECTION_MODEL.predict(frame_res, confidence=0.3)
-
-    crops = []
-    for frame in tqdm(frame_generator, desc='collecting crops'):
-        result = PLAYER_DETECTION_MODEL.predict(frame, confidence=0.3)[0]
-        detections = sv.Detections.from_inference(result)
-        players_detections = detections[detections.class_id == PLAYER_ID]
-        players_crops = [sv.crop_image(frame, xyxy) for xyxy in detections.xyxy]
-        crops += players_crops
-
-    team_classifier = TeamClassifier()
-    team_classifier.fit(crops)
-    return team_classifier
+        return JsonResponse({
+            'error': f'Server error: {str(e)}'
+        }, status=500)
+    
