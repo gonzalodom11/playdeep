@@ -71,8 +71,8 @@ def detect_players(request, year: int, month: int, day: int, slug: str, frame: i
     return object_detection(request, year, month, day, slug, frame)
 
 @router.post("{year}/{month}/{day}/{slug}/analyze-llm")
-def analyze_llm(request):
-    return analyze_frame_with_ai(request)
+def analyze_llm(request, year: int, month: int, day: int, slug: str):
+    return analyze_frame_with_ai(request, year, month, day, slug)
 
 @router.get("user/{username}", response=List[VideoSchema])
 def list_user_videos(request, username: str):
