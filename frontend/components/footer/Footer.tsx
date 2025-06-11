@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><Link href="/#features" className="text-gray-300 hover:text-football-accent">Características</Link></li>
               <li><Link href="/pricing" className="text-gray-300 hover:text-football-accent">Monetización</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
+              <li><a href="/research" className="text-gray-300 hover:text-football-accent">Investigación</a></li>
                {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Opiniones</a></li>*/}
             </ul>
           </div>
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <h4 className="font-semibold text-lg mb-4">Recursos</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Documentación</a></li>
+              <li><a href="/documentation" className="text-gray-300 hover:text-football-accent">Documentación</a></li>
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Tutoriales</a></li>
               {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Blog</a></li>*/}
               <li><a href="#" className="text-gray-300 hover:text-football-accent">Support</a></li>

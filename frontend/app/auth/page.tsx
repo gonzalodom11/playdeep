@@ -105,7 +105,7 @@ const AuthScreen = () => {
       <Card className="w-full max-w-md bg-white/10 backdrop-blur-md border-football-medium shadow-xl">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-football-accent flex items-center justify-center">
-            <span className="text-football-dark font-bold text-2xl">PD</span>
+            <img src="/playdeep-icon.png" alt="Football Play Logo" className="h-16 w-auto" />
           </div>
           <CardTitle className="text-2xl font-bold text-white">Bienvenido a Playdeep</CardTitle>
           <CardDescription className="text-gray-300">

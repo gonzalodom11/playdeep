@@ -6,6 +6,8 @@ import React, { Suspense } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import Image from 'next/image';
+
 
 // get requests to the Django API
 const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -31,7 +33,16 @@ const VideoList = () => {
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
   const videosPerPage = 6;
 
-  if (isLoading) return <div className="text-white">Cargando...</div>;
+  if (isLoading) return <div className="text-white">
+    <Image 
+  src="/blocks-shuffle-4.svg" 
+  alt="Loading..." 
+  width={60} 
+  height={60} 
+  className="mb-4"
+/>
+<h1 className="text-white">Cargando videos...</h1>
+</div>;
   if (error) return <div className="text-white">Error cargando los videos</div>;
 
   const startIndex = (currentPage - 1) * videosPerPage;
