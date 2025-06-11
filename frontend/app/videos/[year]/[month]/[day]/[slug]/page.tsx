@@ -20,8 +20,9 @@ const VideoDetail = () => {
   const [detectedPress, setDetectedPress] = useState<boolean | null>(false);
   const [analyzePress, setAnalyzePress] = useState<boolean | null>(false);
   const [frameNumber, setFrameNumber] = useState<number>(10);
-  const [outputFrame, setOutputFrame] = useState<string | null>("10");
+  const [outputFrame, setOutputFrame] = useState<string | null>("5");
   const [analysis, setAnalysis] = useState<string | null>(null);
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
   
   // New states for AI analysis
   const [userPrompt, setUserPrompt] = useState<string>("¿Qué ves en esta imagen?");
@@ -36,19 +37,25 @@ const VideoDetail = () => {
     imageFetcher,
     { revalidateOnFocus: false }
   );
-/* 
-  const { data: message, isLoading: isAnalyzing, error: analyzeError } = useSWR( 
-    analyzePress ? 
-      [`${apiUrl}${year}/${month}/${day}/${slug}/analyze-llm?frame=${frameNumber}`, userPrompt] 
-      : null, 
-    messageFetcher, 
-    { revalidateOnFocus: false }
-  ); */
+
 
   useEffect(() => {  
     setDetectedPress(false); // reset automatically after loading
     setAnalyzePress(false);
   }, [frameNumber]);
+
+
+
+  useEffect(() => {
+    if ((analyzePress || detectedPress) && !analysis) {
+      const interval = setInterval(() => {
+        setLoadingMessageIndex((prevIndex) => (prevIndex + 1) % loadingMessages.length);
+      }, 3000); // every 3 seconds
+  
+      return () => clearInterval(interval); // cleanup on unmount or when condition changes
+    }
+  }, [analyzePress, analysis, detectedPress]);
+  
 
   if (isLoading) return (
     <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-[400px]">
@@ -102,6 +109,14 @@ const VideoDetail = () => {
   };
 
 
+const loadingMessages = [
+  "Analizando imagenes con IA...",
+  "Detectando patrones tácticos...",
+  "Consultando al modelo LLM...",
+  "Generando análisis futbolistico...",
+  "Procesando jugadas clave...",
+];
+
 
   if (!video) {
     return <div className="container mx-auto px-4 py-8">Video not found</div>;
@@ -124,7 +139,7 @@ const VideoDetail = () => {
             <h1 className="flex items-center text-lg z-10 font-semibold">{video.caption}</h1>
             <label className="text-white mb-2">
               <div className="flex items-center space-x-2">
-                <span>Frame Number:</span>
+                <span>Tiempo (segundos) :</span>
                 <input 
                   type="number"
                   className="p-1 rounded text-black bg-white"
@@ -137,11 +152,11 @@ const VideoDetail = () => {
                     setOutputFrame(value);
                   }}
                 />
-                <span className="text-sm text-gray-300">(Frame 30 = 1 s)</span>
+                <span className="text-sm text-gray-300">(30 frames = 1 s)</span>
               </div>
             </label>
             
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               {video && <Button 
                     onClick={handleDetectPlayer}
                     className="bg-football-accent hover:bg-football-accent/90 text-football-dark text-lg"
@@ -189,14 +204,14 @@ const VideoDetail = () => {
                   alt="Loading..." 
                   width={60} 
                   height={60} 
-                  className="mb-4"
+                  className="mt-4 mb-4"
                 />
-                <div className="text-white">Loading detected players image...</div>
-              </div>
+                 <span className="text-white text-lg mt-4">{loadingMessages[loadingMessageIndex]}</span>
+                 </div>
             </Card>
           )}
           {detectPlayer && detectedPress && (
-            <Card className="video-detail mt-8">
+            <Card className="video-detail mt-8 max-h-[350px] lg:max-h-[500px] overflow-auto">
               <div className="aspect-video relative">
                 <img 
                   src={detectPlayer} 
@@ -206,7 +221,7 @@ const VideoDetail = () => {
               </div>
               <div className="flex flex-col justify-between flex-grow px-4 py-3 text-white">
                 <h1 className="flex items-center text-lg z-10 font-semibold">Detección de los jugadores, los árbitros y el balón. Nivel de fiabilidad mínimo 0.3.</h1>  
-                <h1 className="flex items-center text-lg z-10 font-semibold">Frame Number: {frameNumber ?? "N/A"}</h1> 
+                <h1 className="flex items-center text-lg z-10 font-semibold">Segundo: {frameNumber ?? "N/A"}</h1> 
               </div>
             </Card>
             
@@ -220,20 +235,21 @@ const VideoDetail = () => {
                   alt="Loading..." 
                   width={60} 
                   height={60} 
-                  className="mb-4"
+                  className="mt-4 mb-4"
                 />
-                  <span className="text-white">Analizando imagen con IA...</span>
+                 <span className="text-white text-lg mt-4">{loadingMessages[loadingMessageIndex]}</span>
+
                 </div>
             </Card>
             
           )}
 
           {analysis && (
-            <Card className="video-detail mt-8">
+            <Card className="video-detail bg-gray-800 mt-8 lg:max-h-[700px] overflow-auto">
               <div className="mt-4">
-                <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-                  <Brain className="mr-2" />
-                  Respuesta de la IA  para el frame {frameNumber}:
+                <h2 className="text-xl font-bold bg-football-accent text-football-dark mb-4 flex items-center">
+                  <Brain className="bg-football-accent text-football-dark ml-8 mr-4" />
+                  Respuesta de la IA:
                 </h2>
                 <div className="bg-gray-800 rounded-lg p-4">
                   <p className="text-white whitespace-pre-wrap">{analysis}</p>
