@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
 import { Card } from '@/components/ui/card';
-import { Camera, Brain, Loader2} from 'lucide-react';
+import { Camera, Brain} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import useSWR from 'swr';
 import { useParams } from 'next/navigation'
 import Image from 'next/image';
+import { toast } from '@/hooks/use-toast';
 
 
 // get requests to the Django API
@@ -17,14 +18,13 @@ const imageFetcher = (...args: [RequestInfo | URL, RequestInit?]) =>
 
 const VideoDetail = () => {
   const [detectedPress, setDetectedPress] = useState<boolean | null>(false);
+  const [analyzePress, setAnalyzePress] = useState<boolean | null>(false);
   const [frameNumber, setFrameNumber] = useState<number>(10);
   const [outputFrame, setOutputFrame] = useState<string | null>("10");
+  const [analysis, setAnalysis] = useState<string | null>(null);
   
   // New states for AI analysis
-  const [aiAnalyzing, setAiAnalyzing] = useState<boolean>(false);
-  const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [userPrompt, setUserPrompt] = useState<string>("¿Qué ves en esta imagen?");
-  const [capturedFrame, setCapturedFrame] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const params = useParams();
@@ -36,10 +36,18 @@ const VideoDetail = () => {
     imageFetcher,
     { revalidateOnFocus: false }
   );
+/* 
+  const { data: message, isLoading: isAnalyzing, error: analyzeError } = useSWR( 
+    analyzePress ? 
+      [`${apiUrl}${year}/${month}/${day}/${slug}/analyze-llm?frame=${frameNumber}`, userPrompt] 
+      : null, 
+    messageFetcher, 
+    { revalidateOnFocus: false }
+  ); */
 
   useEffect(() => {  
     setDetectedPress(false); // reset automatically after loading
-    
+    setAnalyzePress(false);
   }, [frameNumber]);
 
   if (isLoading) return (
@@ -60,78 +68,40 @@ const VideoDetail = () => {
 
   const handleDetectPlayer = () => {
     // For demonstration, we'll use a placeholder image
+    setAnalyzePress(false);
     setDetectedPress(true); 
   };
 
-  const captureFrame = () => {
-    if (!videoRef.current) {
-      console.error('Video element not found');
-      return null;
-    }
-
-    const video = videoRef.current;
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    if (!ctx) {
-      console.error('Could not get canvas context');
-      return null;
-    }
-
-    // Set canvas dimensions to match video
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    
-    // Draw the current frame
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    // Convert to base64
-    const dataURL = canvas.toDataURL('image/jpeg', 0.8);
-    return dataURL;
-  };
-
-  const handleAiAnalysis = async () => {
-    if (!userPrompt.trim()) {
-      alert('Por favor, escribe una pregunta o instrucción.');
-      return;
-    }
-
-    const frameData = captureFrame();
-    if (!frameData) {
-      alert('Error al capturar el frame del video.');
-      return;
-    }
-
-    setCapturedFrame(frameData);
-    setAiAnalyzing(true);
-    setAiAnalysis(null);
-
+  const handleAnalyzeWithLLM = async () => {
+    setAnalyzePress(true);
+    setDetectedPress(false);
     try {
-      const response = await fetch(`${apiUrl}analyze-llm/`, {
+      const response = await fetch(`${apiUrl}${year}/${month}/${day}/${slug}/analyze-llm`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          image: frameData,
-          prompt: userPrompt
-        })
+          prompt: userPrompt,
+        }),
       });
-
-      const data = await response.json();
-      
-      if (data.success) {
-        setAiAnalysis(data.analysis);
-      } else {
-        throw new Error(data.error || 'Error desconocido');
+  
+      if (!response.ok) {
+        throw new Error(await response.text());
       }
+  
+      const result = await response.json();
+      setAnalysis(result.analysis); // set this in state
     } catch (error) {
-      console.error('Error analyzing frame:', error);
-      setAiAnalysis(`Error: ${error instanceof Error ? error.message : 'Error desconocido'}`);
-    } finally {
-      setAiAnalyzing(false);
+      toast({
+        title: "Error al analizar",
+        description: error instanceof Error ? error.message : "An unknown error occurred",
+        variant: "destructive",
+      });
     }
   };
+
+
 
   if (!video) {
     return <div className="container mx-auto px-4 py-8">Video not found</div>;
@@ -181,15 +151,10 @@ const VideoDetail = () => {
                   </Button>}
               
               <Button 
-                onClick={handleAiAnalysis}
-                disabled={aiAnalyzing}
+                onClick={handleAnalyzeWithLLM}
                 className="bg-blue-600 hover:bg-blue-700 text-white text-lg"
               >
-                {aiAnalyzing ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <Brain className="mr-2" />
-                )}
+                <Brain className="mr-2" />
                 Analizar con IA
               </Button>
             </div>
@@ -215,31 +180,6 @@ const VideoDetail = () => {
         </Card>
 
         {/* AI Analysis Results */}
-        
-          <Card className="video-detail mt-8">
-            <div className="p-4">
-              <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-                <Brain className="mr-2" />
-                Análisis con IA
-              </h2>
-              
-              {capturedFrame && (
-                <div className="mb-4">
-                  <h3 className="text-sm font-medium text-white mb-2">Frame capturado:</h3>
-                  <div className="aspect-video relative rounded-lg overflow-hidden">
-                    <img 
-                      src={capturedFrame} 
-                      alt="Frame capturado"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              )}
-
-             
-            </div>
-          </Card>
-
         {/* Existing player detection results */}
         {!detectPlayer && detectedPress && (
             <Card className="video-detail mt-8">
@@ -272,24 +212,33 @@ const VideoDetail = () => {
             
           )}
 
-          {aiAnalyzing && (
+          {analyzePress && !analysis && !detectedPress && (
             <Card className="video-detail mt-8">
-              <div className="flex items-center justify-center py-8">
-                  <Loader2 className="h-8 w-8 animate-spin text-blue-500 mr-3" />
+              <div className="aspect-video relative flex flex-col items-center justify-center">
+                <Image 
+                  src="/blocks-shuffle-4.svg" 
+                  alt="Loading..." 
+                  width={60} 
+                  height={60} 
+                  className="mb-4"
+                />
                   <span className="text-white">Analizando imagen con IA...</span>
                 </div>
             </Card>
             
           )}
 
-          {aiAnalysis && (
+          {analysis && (
             <Card className="video-detail mt-8">
               <div className="mt-4">
-                  <h3 className="text-sm font-medium text-white mb-2">Respuesta de la IA:</h3>
-                  <div className="bg-gray-800 rounded-lg p-4">
-                    <p className="text-white whitespace-pre-wrap">{aiAnalysis}</p>
-                  </div>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center">
+                  <Brain className="mr-2" />
+                  Respuesta de la IA  para el frame {frameNumber}:
+                </h2>
+                <div className="bg-gray-800 rounded-lg p-4">
+                  <p className="text-white whitespace-pre-wrap">{analysis}</p>
                 </div>
+              </div>
             </Card>
             
           )}

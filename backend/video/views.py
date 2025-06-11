@@ -1,3 +1,4 @@
+import io
 import os
 import json
 import base64
@@ -15,7 +16,7 @@ import supervision as sv
 from SoccerNet.Downloader import SoccerNetDownloader
 import cv2
 from PIL import Image
-import io
+from io import BytesIO
 import warnings
 import supervision as sv
 from openai import OpenAI
@@ -169,8 +170,6 @@ def analyze_with_llm(request, year, month, day, slug, frame_selected):
     for _ in range(frame_selected):
         frame_res = next(frame_generator)
 
-    
-
 
 
 
@@ -187,35 +186,53 @@ def analyze_video(request, year, month, day, slug, frame_selected):
     results = model.predict(r"C:\Users\User\Videos\Barcelona Villareal La Liga 2025.mp4", save=True)
 
 
-def analyze_frame_with_ai(request):
+
+def extract_frame_as_base64(video_url: str, frame_number: int) -> str:
+    frame_generator = sv.get_video_frames_generator(video_url)
+    for _ in range(frame_number):
+        frame = next(frame_generator)
+
+    # Convert BGR (OpenCV) to RGB for PIL
+    image = Image.fromarray(frame[:, :, ::-1])
+    buffer = BytesIO()
+    image.save(buffer, format="JPEG")
+    base64_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/jpeg;base64,{base64_str}"
+
+
+@csrf_exempt
+def analyze_frame_with_ai(request, year, month, day, slug):
     """
     Vista para analizar frames de video usando OpenAI GPT-4o
     Recibe una imagen en base64 y un prompt, devuelve el análisis de la IA
     """
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Only POST method allowed'}, status=405)
+        
+    video = get_object_or_404(
+        Video,
+        slug=slug,
+        publish__year=year,
+        publish__month=month,
+        publish__day=day
+    )
+    
+    # Get frame number from query parameters
+    frame_selected = request.GET.get('frame', 10)
+    
     try:
-        # Parsear el JSON del request
+        # Parse JSON from request body
         data = json.loads(request.body)
+        user_prompt = data.get('prompt', 'Describe what you see in this frame')
         
-        # Validar que los datos requeridos están presentes
-        if 'image' not in data or 'prompt' not in data:
-            return JsonResponse({
-                'error': 'Missing required fields: image and prompt'
-            }, status=400)
-        
-        image_base64 = data['image']
-        user_prompt = data['prompt']
-        
-        # Validar que el prompt no esté vacío
+        # Validate prompt
         if not user_prompt.strip():
             return JsonResponse({
                 'error': 'Prompt cannot be empty'
             }, status=400)
-        
-        # Validar el formato de la imagen base64
-        if not image_base64.startswith('data:image/'):
-            return JsonResponse({
-                'error': 'Invalid image format. Expected base64 data URL'
-            }, status=400)
+            
+        # Extract frame from video
+        image_base64 = extract_frame_as_base64(video.video.url, int(frame_selected))
         
         # Inicializar cliente de OpenAI
         try:
@@ -256,7 +273,8 @@ def analyze_frame_with_ai(request):
             return JsonResponse({
                 'success': True,
                 'analysis': ai_response,
-                'prompt_used': user_prompt
+                'prompt_used': user_prompt,
+                'frame_number': frame_selected
             })
             
         except Exception as openai_error:
