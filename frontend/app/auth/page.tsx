@@ -48,6 +48,7 @@ const AuthScreen = () => {
         router.push('/profile'); // Redirect to profile screen
       } else {
         toast({
+          variant: "destructive",
           title: "Inicio de sesión fallido",
           description: response.data.message,
         });
@@ -55,6 +56,7 @@ const AuthScreen = () => {
     } catch (error) {
       console.error(error);
       toast({
+        variant: "destructive",
         title: "Error",
         description: "Un error ocurrió durante el inicio de sesión",
       });
