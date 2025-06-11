@@ -7,6 +7,7 @@ import useSWR from 'swr';
 import { getValidAccessToken } from '@/utils/auth';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const fetcher = (...args: [RequestInfo | URL, RequestInit?]) => fetch(...args).then((res) => res.json());
@@ -69,7 +70,13 @@ const ProfileScreen = () => {
   };
 
   if (!userData) {
-    return <div className="text-white">Loading user data...</div>;
+    return <div className="text-white"><Image 
+    src="/blocks-shuffle-4.svg" 
+    alt="Loading..." 
+    width={60} 
+    height={60} 
+    className="mb-4"
+  />Loading user data...</div>;
   }
 
   return (
