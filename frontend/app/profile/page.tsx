@@ -116,12 +116,12 @@ const ProfileScreen = () => {
       </Card>
 
       {isLoading ? (
-        <div className="text-white mt-8">Loading videos...</div>
+        <div className="text-white mt-8">Cargando videos...</div>
       ) : error ? (
-        <div className="text-red-500 mt-8">Error loading videos</div>
+        <div className="text-red-500 mt-8">Error cargando los videos</div>
       ) : (
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-white mb-4">Your Videos</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">Tus Videos</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {videos?.map((video: Video) => (
               <Card key={video.id} className="bg-football-dark border-football-medium">
