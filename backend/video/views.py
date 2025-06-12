@@ -92,7 +92,7 @@ def object_detection(request, year, month, day, slug, frame_selected):
         # Initialize Roboflow
         rf = Roboflow(api_key=ROBOFLOW_API_KEY)
         # Load the model
-        PLAYER_DETECTION_MODEL = rf.workspace().project("football-players-detection-3zvbc").version(11).model
+        PLAYER_DETECTION_MODEL = rf.workspace().project("football-players-detection-3zvbc").version(12).model
     except Exception as e:
         return HttpResponse(f"Error: Environment key missing", status=500)
     
@@ -109,6 +109,7 @@ def object_detection(request, year, month, day, slug, frame_selected):
 
     frame_generator = sv.get_video_frames_generator(video.video.url)
     frame_selected = frame_selected * 30
+    frame_res = None
     # Select the 10th frame (index 9, as indexing starts from 0)
     for _ in range(frame_selected):
         frame_res = next(frame_generator) 
