@@ -5,8 +5,6 @@ import base64
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-from django.utils.decorators import method_decorator
 from .models import Video
 from .forms import Video_form
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -151,27 +149,6 @@ def object_detection(request, year, month, day, slug, frame_selected):
     image.save(buffer, format="PNG")
 
     return HttpResponse(buffer.getvalue(), content_type="image/png")
-
-
-def analyze_with_llm(request, year, month, day, slug, frame_selected):
-    
-    client = OpenAI(api_key=config('OPENAI_API_KEY'))
-
-    video = get_object_or_404(
-        Video,
-        slug=slug,
-        publish__year=year,
-        publish__month=month,
-        publish__day=day
-    )
-
-    frame_generator = sv.get_video_frames_generator(video.video.url)
-
-    # Select the 10th frame (index 9, as indexing starts from 0)
-    for _ in range(frame_selected):
-        frame_res = next(frame_generator)
-
-
 
 
 def analyze_video(request, year, month, day, slug, frame_selected):
