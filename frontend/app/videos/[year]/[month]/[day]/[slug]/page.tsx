@@ -19,7 +19,7 @@ const imageFetcher = (...args: [RequestInfo | URL, RequestInit?]) =>
 const VideoDetail = () => {
   const [detectedPress, setDetectedPress] = useState<boolean | null>(false);
   const [analyzePress, setAnalyzePress] = useState<boolean | null>(false);
-  const [frameNumber, setFrameNumber] = useState<number>(10);
+  const [frameNumber, setFrameNumber] = useState<number>(5);
   const [outputFrame, setOutputFrame] = useState<string | null>("5");
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
@@ -148,7 +148,7 @@ const loadingMessages = [
                   onChange={(e) => {
                     setDetectedPress(false); // reset automatically after loading
                     const value = e.target.value;
-                    setFrameNumber(value === '' ? 1 : parseInt(value));
+                    setFrameNumber(value === '' ? 5 : parseInt(value));
                     setOutputFrame(value);
                   }}
                 />
@@ -186,7 +186,7 @@ const loadingMessages = [
                      value={userPrompt}
                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserPrompt(e.target.value)}
                      placeholder="Escribe tu pregunta aquí..."
-                     className="flex-1 text-black"
+                     className="flex-1 text-black bg-white"
                    />
                 </div>
               </div>
