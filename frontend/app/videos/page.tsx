@@ -86,7 +86,7 @@ const VideoList = () => {
             currentPage === totalPages ? "pointer-events-none opacity-50" : ""
           }`}
         >
-          Next
+          Siguiente
         </Link>
       </div>
     </>
@@ -129,7 +129,7 @@ const VideoCard = ({ video }: { video: Video }) => {
           className="w-full"
         >
           <Button className="bg-football-accent mt-2 hover:bg-football-accent/90 text-football-dark text-lg">
-            Detectar jugadores
+            Analizar video
           </Button>
         </Link>
         <div className="flex items-center justify-between text-sm text-gray-300  mt-2 mb-2">
