@@ -30,6 +30,17 @@ const UploadScreen = () => {
   useEffect(() => {
     setIsUploading(globalUploadState.isUploading);
     setUploadProgress(globalUploadState.progress);
+
+    // Listen for upload progress updates
+    const handleUploadProgress = (event: CustomEvent) => {
+      setUploadProgress(event.detail);
+    };
+
+    window.addEventListener('uploadProgress', handleUploadProgress as EventListener);
+
+    return () => {
+      window.removeEventListener('uploadProgress', handleUploadProgress as EventListener);
+    };
   }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

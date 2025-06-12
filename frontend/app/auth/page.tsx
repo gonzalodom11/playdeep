@@ -21,6 +21,8 @@ const AuthScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter(); // Initialize the router
   const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState("login");
+
 
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -39,8 +41,11 @@ const AuthScreen = () => {
           title: "Iniciado sesión correctamente",
           description: "Bienvenido de nuevo a Playdeep",
         });
+        
+
         const accessToken = response.data.access;
         const refreshToken = response.data.refresh;
+
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         // Dispatch custom event for auth state change
@@ -83,6 +88,7 @@ const AuthScreen = () => {
           title: "Registro completado correctamente",
           description: "Bienvenido a Playdeep",
         });
+        setActiveTab("login");
       } else {
         toast({
           title: "El registro falló",
@@ -112,7 +118,7 @@ const AuthScreen = () => {
             Inicia sesión para acceder a las herramientas de análisis de partidos
           </CardDescription>
         </CardHeader>
-        <Tabs defaultValue="login" className="px-6">
+        <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab} className="px-6">
           <TabsList className="grid w-full grid-cols-2 bg-football-medium/50">
             <TabsTrigger value="login" className="data-[state=active]:bg-football-accent data-[state=active]:text-football-dark">Iniciar sesión</TabsTrigger>
             <TabsTrigger value="register" className="data-[state=active]:bg-football-accent data-[state=active]:text-football-dark">Registrarse</TabsTrigger>
@@ -138,9 +144,9 @@ const AuthScreen = () => {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="password" className="text-white">Contraseña</Label>
-                    <a href="#" className="text-xs text-football-accent hover:text-football-accent/80">
+                    {/* <a href="#" className="text-xs text-football-accent hover:text-football-accent/80">
                       Forgot password?
-                    </a>
+                    </a> */}
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -171,7 +177,7 @@ const AuthScreen = () => {
                   className="w-full bg-football-accent hover:bg-football-accent/90 text-football-dark"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Logging in..." : "Iniciar sesión"}
+                  {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
                 </Button>
               </CardFooter>
             </form>
@@ -240,7 +246,7 @@ const AuthScreen = () => {
                   className="w-full bg-football-accent hover:bg-football-accent/90 text-football-dark"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Creating Account..." : "Crear cuenta"}
+                  {isLoading ? "Creando cuenta..." : "Crear cuenta"}
                 </Button>
               </CardFooter>
             </form>
