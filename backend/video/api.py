@@ -1,13 +1,12 @@
 from typing import List
 from ninja import Router
 from ninja_jwt.authentication import JWTAuth
-from .views import object_detection, analyze_with_llm, analyze_frame_with_ai
+from .views import object_detection, analyze_frame_with_ai
 from .models import Video  # Import the Video model
 from django.shortcuts import get_object_or_404  # Import get_object_or_404
-from .schemas import VideoSchema, VideoCreateSchema, ConfirmUploadSchema  # Import the schemas
+from .schemas import VideoSchema, ConfirmUploadSchema  # Import the schemas
 from django.core.exceptions import ValidationError  # Import ValidationError
-from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPermissions
-from datetime import datetime, timedelta
+from datetime import datetime
 from decouple import config
 
 

@@ -1,4 +1,4 @@
-from ninja import NinjaAPI, Router
+from ninja import Router
 from ninja_jwt.controller import NinjaJWTDefaultController
 from ninja_jwt.authentication import JWTAuth
 from ninja_extra import NinjaExtraAPI
