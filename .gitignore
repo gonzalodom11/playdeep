@@ -67,5 +67,5 @@ coverage/
 
 # Videos
 *.mp4
-
+*.pyc
 .cursor/
