@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Recursos</h4>
             <ul className="space-y-2">
               <li><a href="/documentation" className="text-gray-300 hover:text-football-accent">Documentación</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Tutoriales</a></li>
+              <li><a href="https://www.youtube.com/watch?v=fcwm5K1ub20" className="text-gray-300 hover:text-football-accent">Tutorial</a></li>
               {/*<li><a href="#" className="text-gray-300 hover:text-football-accent">Blog</a></li>*/}
-              <li><a href="#" className="text-gray-300 hover:text-football-accent">Support</a></li>
+              <li><a href="/support" className="text-gray-300 hover:text-football-accent">Soporte</a></li>
             </ul>
           </div>
           
