@@ -7,5 +7,5 @@ watchPatterns = [
     "Dockerfile",
     "playdeep/**",
     "app/**",
-    "video/**,
+    "video/**"
 ]
