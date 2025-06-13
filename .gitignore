@@ -109,3 +109,8 @@ build/
 
 # Ignore OS or editor junk files
 Thumbs.db
+
+
+*.lib
+*.node
+*.gz
