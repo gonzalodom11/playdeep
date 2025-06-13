@@ -4,7 +4,8 @@ npm-debug.log
 yarn-error.log
 
 hf_cache/hub/
-
+best.pt
+*.pth
 
 # Logs
 logs/
