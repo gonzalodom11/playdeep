@@ -107,6 +107,8 @@ CORS_ALLOWED_METHODS = [
     'PUT',
 ]
 
+# Allow credentials in CORS requests
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
