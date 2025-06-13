@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
 export default function PrivacyPolicyScreen() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-football-dark flex items-center justify-center p-4">
       <Card className="backdrop-blur-md bg-white/10 shadow-xl border border-white/20 text-white p-6 rounded-2xl w-[90%] max-w-2xl mx-auto">
         <CardHeader className="text-center mb-4">
           <h2 className="text-3xl font-bold">Política de Privacidad</h2>
