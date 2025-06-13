@@ -85,6 +85,7 @@ const VideoDetail = () => {
     try {
       const response = await fetch(`${apiUrl}${year}/${month}/${day}/${slug}/analyze-llm`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

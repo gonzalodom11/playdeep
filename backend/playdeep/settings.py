@@ -107,6 +107,9 @@ CORS_ALLOWED_METHODS = [
     'PUT',
 ]
 
+# Allow credentials (cookies, authorization headers, etc)
+CORS_ALLOW_CREDENTIALS = True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

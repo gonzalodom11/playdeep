@@ -6,5 +6,6 @@ watchPatterns = [
     "railway.toml",
     "Dockerfile",
     "playdeep/**",
-    "app/**"
+    "app/**",
+    "video/**,
 ]
