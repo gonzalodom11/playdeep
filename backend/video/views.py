@@ -161,7 +161,7 @@ def analyze_video(request, year, month, day, slug, frame_selected):
         )
     
     model = YOLO('models/best.pt')
-    results = model.predict(r"C:\Users\User\Videos\Barcelona Villareal La Liga 2025.mp4", save=True)
+    results = model.predict(r"Video/route", save=True)
 
 
 
@@ -177,6 +177,7 @@ def extract_frame_as_base64(video_url: str, frame_number: int) -> str:
     buffer = BytesIO()
     image.save(buffer, format="JPEG")
     base64_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    buffer.close()
     return f"data:image/jpeg;base64,{base64_str}"
 
 
@@ -199,6 +200,14 @@ def analyze_frame_with_ai(request, year, month, day, slug):
     cap = cv2.VideoCapture(video.video.url)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     cap.release()
+
+    # Inicializar cliente de OpenAI
+    try:
+        client = OpenAI(api_key=config('OPENAI_API_KEY'))
+    except Exception as e:
+        return JsonResponse({
+            'error': 'OpenAI API key not configured'
+        }, status=500)
     # Get frame number from query parameters
     ai_response = ""
     try:
@@ -211,54 +220,45 @@ def analyze_frame_with_ai(request, year, month, day, slug):
             return JsonResponse({
                 'error': 'Prompt cannot be empty'
             }, status=400)
-        for n in range(frame_count):
-            if n % 300 == 0 and n != 0:
-                # Extract frame from video
-                image_base64 = extract_frame_as_base64(video.video.url, n)
-        
-                # Inicializar cliente de OpenAI
-                try:
-                    client = OpenAI(api_key=config('OPENAI_API_KEY'))
-                except Exception as e:
-                    return JsonResponse({
-                        'error': 'OpenAI API key not configured'
-                    }, status=500)
-                
-                # Llamar a la API de OpenAI GPT-4o
-                try:
-                    response = client.chat.completions.create(
-                        model="gpt-4o",
-                        messages=[
-                            {
-                                "role": "user",
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": user_prompt + 
-                                        "Haz un analisis futbolistico de la imagen, intenta identificar jugadores, equipos y acciones clave."
-                                    },
-                                    {
-                                        "type": "image_url",
-                                        "image_url": {
-                                            "url": image_base64
-                                        }
+        for n in range(300, frame_count, 300):
+            # Extract frame from video
+            image_base64 = extract_frame_as_base64(video.video.url, n)
+            
+            # Llamar a la API de OpenAI GPT-4o
+            try:
+                response = client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": user_prompt + 
+                                    "Haz un analisis futbolistico de la imagen, intenta identificar jugadores, equipos y acciones clave."
+                                },
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": image_base64
                                     }
-                                ]
-                            }
-                        ],
-                        max_tokens=250,
-                        temperature=0.6
-                    )
-                    
-                    # Extraer la respuesta
-                    ai_response += "\n A los "+ str(n/30) + " segundos: \n"
-                    ai_response += response.choices[0].message.content
-                    ai_response += "\n"
+                                }
+                            ]
+                        }
+                    ],
+                    max_tokens=250,
+                    temperature=0.6
+                )
+                
+                # Extraer la respuesta
+                ai_response += "\n A los "+ str(n/30) + " segundos: \n"
+                ai_response += response.choices[0].message.content
+                ai_response += "\n"
 
-                except Exception as openai_error:
-                    return JsonResponse({
-                        'error': f'OpenAI API error: {str(openai_error)}'
-                    }, status=500)
+            except Exception as openai_error:
+                return JsonResponse({
+                    'error': f'OpenAI API error: {str(openai_error)}'
+                }, status=500)
         return JsonResponse({
                 'success': True,
                 'analysis': ai_response,
