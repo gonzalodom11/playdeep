@@ -4,7 +4,7 @@ npm-debug.log
 yarn-error.log
 
 hf_cache/hub/
-best.pt
+*.pt
 *.pth
 
 # Logs
@@ -70,3 +70,42 @@ coverage/
 *.mp4
 
 .cursor/
+
+
+# Ignore large binary/dependency files
+dnnl.lib
+torch_cpu.dll
+next-swc.win32-x64-msvc.node
+cv2.pyd
+paraphrase-en.gz
+libprotoc.lib
+
+# Common node.js + Python ignores
+node_modules/
+.next/
+.env
+.env.local
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Python virtual environment
+venv/
+.venv/
+
+# Output / build
+dist/
+build/
+*.log
+
+# Ignore OS or editor junk files
+Thumbs.db
