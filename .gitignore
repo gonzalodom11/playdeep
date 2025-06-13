@@ -68,9 +68,15 @@ coverage/
 
 # Videos
 *.mp4
+backend/media/videos/
+
+# Model files
+models/*.pt
+models/*.pkl
+models/best.pt
+models/team_classifier*
 
 .cursor/
-
 
 # Ignore large binary/dependency files
 dnnl.lib
