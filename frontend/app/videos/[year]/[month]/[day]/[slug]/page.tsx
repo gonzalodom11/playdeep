@@ -85,8 +85,10 @@ const VideoDetail = () => {
     try {
       const response = await fetch(`${apiUrl}${year}/${month}/${day}/${slug}/analyze-llm`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           prompt: userPrompt,
@@ -94,12 +96,14 @@ const VideoDetail = () => {
       });
   
       if (!response.ok) {
-        throw new Error(await response.text());
+        const errorText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
       }
   
       const result = await response.json();
       setAnalysis(result.analysis); // set this in state
     } catch (error) {
+      console.error('Analyze LLM error:', error);
       toast({
         title: "Error al analizar",
         description: error instanceof Error ? error.message : "An unknown error occurred",

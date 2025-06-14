@@ -208,8 +208,7 @@ def analyze_frame_with_ai(request, year, month, day, slug):
         return JsonResponse({
             'error': 'OpenAI API key not configured'
         }, status=500)
-    # Get frame number from query parameters
-    ai_response = ""
+
     try:
         # Parse JSON from request body
         data = json.loads(request.body)
@@ -220,14 +219,19 @@ def analyze_frame_with_ai(request, year, month, day, slug):
             return JsonResponse({
                 'error': 'Prompt cannot be empty'
             }, status=400)
-        for n in range(300, frame_count, 300):
-            # Extract frame from video
-            image_base64 = extract_frame_as_base64(video.video.url, n)
-            
-            # Llamar a la API de OpenAI GPT-4o
+
+        # Process only 3 key frames instead of every 300 frames
+        key_frames = [frame_count // 3, 2 * frame_count // 3]
+        ai_response = ""
+
+        for frame_number in key_frames:
             try:
+                # Extract frame from video
+                image_base64 = extract_frame_as_base64(video.video.url, frame_number)
+                
+                # Call OpenAI API
                 response = client.chat.completions.create(
-                    model="gpt-4o",
+                    model="gpt-4o",  # Updated model name
                     messages=[
                         {
                             "role": "user",
@@ -250,8 +254,8 @@ def analyze_frame_with_ai(request, year, month, day, slug):
                     temperature=0.6
                 )
                 
-                # Extraer la respuesta
-                ai_response += "\n A los "+ str(n/30) + " segundos: \n"
+                # Extract response
+                ai_response += f"\n A los {frame_number/30:.1f} segundos: \n"
                 ai_response += response.choices[0].message.content
                 ai_response += "\n"
 
@@ -259,13 +263,12 @@ def analyze_frame_with_ai(request, year, month, day, slug):
                 return JsonResponse({
                     'error': f'OpenAI API error: {str(openai_error)}'
                 }, status=500)
+
         return JsonResponse({
-                'success': True,
-                'analysis': ai_response,
-                'prompt_used': user_prompt,
-            })
-            
-       
+            'success': True,
+            'analysis': ai_response,
+            'prompt_used': user_prompt,
+        })
             
     except json.JSONDecodeError:
         return JsonResponse({
