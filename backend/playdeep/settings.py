@@ -81,8 +81,18 @@ ROOT_URLCONF = 'playdeep.urls'
 
 CORS_ALLOWED_ORIGINS = []
 ENV_CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=str, default="")
-for origin in ENV_CORS_ALLOWED_ORIGINS.split(","):
-    CORS_ALLOWED_ORIGINS.append(f"{origin}".strip().lower())
+if ENV_CORS_ALLOWED_ORIGINS:
+    for origin in ENV_CORS_ALLOWED_ORIGINS.split(","):
+        if origin.strip():  # Only add non-empty origins
+            CORS_ALLOWED_ORIGINS.append(origin.strip())  # Remove .lower() to preserve case
+else:
+    # Fallback origins if no environment variable is set
+    CORS_ALLOWED_ORIGINS = [
+        "https://www.playdeep.pro",
+        "https://playdeep.pro",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 # Allow specific headers that your frontend might send
 CORS_ALLOW_HEADERS = [
@@ -95,6 +105,7 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
+    'access-control-allow-credentials',
 ]
 
 # Allow specific methods
@@ -109,6 +120,20 @@ CORS_ALLOWED_METHODS = [
 
 # Allow credentials in CORS requests
 CORS_ALLOW_CREDENTIALS = True
+
+# Ensure preflight requests are handled properly
+CORS_PREFLIGHT_MAX_AGE = 86400
+
+# Allow all origins in development, but use specific origins in production
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOW_ALL_ORIGINS = False
+
+# Debug: Print CORS configuration (remove this in production)
+print(f"DEBUG: {DEBUG}")
+print(f"CORS_ALLOW_ALL_ORIGINS: {CORS_ALLOW_ALL_ORIGINS}")
+print(f"CORS_ALLOWED_ORIGINS: {CORS_ALLOWED_ORIGINS}")
 
 TEMPLATES = [
     {
