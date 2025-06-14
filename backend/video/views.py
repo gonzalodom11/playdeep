@@ -221,7 +221,7 @@ def analyze_frame_with_ai(request, year, month, day, slug):
             }, status=400)
 
         # Process only 3 key frames instead of every 300 frames
-        key_frames = [frame_count // 4, frame_count // 2, 3 * frame_count // 4]
+        key_frames = [frame_count // 3, 2 * frame_count // 3]
         ai_response = ""
 
         for frame_number in key_frames:

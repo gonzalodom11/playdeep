@@ -61,9 +61,11 @@ ARG PROJ_NAME="playdeep"
 # this script will execute at runtime when
 # the container starts and the database is available
 RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
-    printf "RUN_PORT=\"\${PORT:-8000}\"\n\n" >> ./paracord_runner.sh && \
+    printf "RUN_PORT=\"\${PORT:-8000}\"\n" >> ./paracord_runner.sh && \
+    printf "GUNICORN_TIMEOUT=\"\${GUNICORN_TIMEOUT:-300}\"\n" >> ./paracord_runner.sh && \
+    printf "GUNICORN_WORKERS=\"\${GUNICORN_WORKERS:-2}\"\n\n" >> ./paracord_runner.sh && \
     printf "python manage.py migrate --no-input\n" >> ./paracord_runner.sh && \
-    printf "gunicorn ${PROJ_NAME}.wsgi:application --bind \"[::]:\$RUN_PORT\"\n" >> ./paracord_runner.sh
+    printf "gunicorn ${PROJ_NAME}.wsgi:application --bind \"[::]:\$RUN_PORT\" --timeout \$GUNICORN_TIMEOUT --workers \$GUNICORN_WORKERS\n" >> ./paracord_runner.sh
 
 # make the bash script executable
 RUN chmod +x paracord_runner.sh

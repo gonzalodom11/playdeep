@@ -232,3 +232,6 @@ AZURE_UPLOAD_CHUNK_SIZE = 4 * 1024 * 1024  # 4MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes
 FILE_UPLOAD_MAX_MEMORY_SIZE = 160857600  # 160MB in bytes
 
+# Increase request timeout for long-running operations like OpenAI API calls
+GUNICORN_TIMEOUT = 300  # 5 minutes
+

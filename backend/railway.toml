@@ -9,3 +9,12 @@ watchPatterns = [
     "app/**",
     "video/**"
 ]
+
+[deploy]
+healthcheckPath = "/admin/"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+
+[env]
+GUNICORN_TIMEOUT = "300"
+GUNICORN_WORKERS = "2"
