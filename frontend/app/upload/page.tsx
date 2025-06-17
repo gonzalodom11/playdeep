@@ -105,15 +105,15 @@ const UploadScreen = () => {
     } catch (error: unknown) {
       if (axios.isCancel(error)) {
         toast({
-          title: "Upload Cancelled",
-          description: "The upload was cancelled",
+          title: "Subida cancelada",
+          description: "La subida fue cancelada",
         });
       } else {
         const axiosError = error as { code?: string; response?: { data?: { detail?: string } } };
-        let errorMessage = "Failed to upload video. Please try again.";
+        let errorMessage = "Error al subir el video. Por favor, inténtalo de nuevo.";
         if (axiosError.code === 'ECONNABORTED') {
           errorMessage = 
-          "Upload timed out. Please try again with a smaller file or check your internet connection.";
+          "Tiempo de espera agotado. Por favor, inténtalo de nuevo con un archivo más pequeño o verifica tu conexión a internet.";
         } else if (axiosError.response?.data?.detail) {
           errorMessage = axiosError.response.data.detail;
         }
@@ -143,12 +143,12 @@ const UploadScreen = () => {
     <div className="container mx-auto px-4 py-8 mt-16">
       <Card className="bg-football-dark border-football-medium max-w-2xl mx-auto">
         <CardHeader>
-          <h1 className="text-2xl font-bold text-white">Upload Video</h1>
+          <h1 className="text-2xl font-bold text-white">Subir Video</h1>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="video" className="text-white">Video File</Label>
+              <Label htmlFor="video" className="text-white">Archivo de video</Label>
               <Input
                 id="video"
                 type="file"
@@ -163,7 +163,7 @@ const UploadScreen = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="caption" className="text-white">Caption</Label>
+              <Label htmlFor="caption" className="text-white">Título</Label>
               <Input
                 id="caption"
                 type="text"
@@ -185,14 +185,14 @@ const UploadScreen = () => {
                   ></div>
                 </div>
                 <p className="text-sm text-gray-400 text-center">
-                  Uploading... {uploadProgress}%
+                  Subiendo... {uploadProgress}%
                 </p>
                 <Button
                   type="button"
                   onClick={handleCancel}
                   className="w-full bg-red-600 hover:bg-red-700 text-white"
                 >
-                  Cancel Upload
+                  Cancelar
                 </Button>
               </div>
             )}

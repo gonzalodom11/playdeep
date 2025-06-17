@@ -59,6 +59,7 @@ const VideoList = () => {
       </div>
       {/* Pagination Controls */}
       <div className="flex justify-center items-center gap-2 mt-8 text-white">
+        {/* Link to the previous page */}
         <Link
           href={`?page=${currentPage - 1}`}
           className={`px-3 py-1 border rounded ${
@@ -80,6 +81,7 @@ const VideoList = () => {
             {page}
           </Link>
         ))}
+        {/* Link to the next page */}
         <Link
           href={`?page=${currentPage + 1}`}
           className={`px-3 py-1 border rounded ${
@@ -132,6 +134,7 @@ const VideoCard = ({ video }: { video: Video }) => {
             Analizar video
           </Button>
         </Link>
+        {/* Bottom info section */}
         <div className="flex items-center justify-between text-sm text-gray-300  mt-2 mb-2">
           <div className="flex items-center">
             <Calendar size={14} className="mr-4 text-football-accent" />
